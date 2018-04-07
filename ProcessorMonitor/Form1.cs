@@ -11,7 +11,10 @@ namespace ProcessorMonitor
 {
     public partial class Form1 : MetroForm
     {
+        
         public delegate void MyDelegate();
+       
+        #region Hardware
         public void hddinfo()
         {
 
@@ -135,6 +138,12 @@ namespace ProcessorMonitor
                 }
             }
         }
+
+        public void testGPU()
+        {
+            
+        }
+
         public void FanSpeedGPU()
         {
             Computer c = new Computer();
@@ -219,16 +228,20 @@ namespace ProcessorMonitor
             }
 
         }
+        #endregion 
+
 
         public Form1()
         {
             InitializeComponent();
             //Потоки
             backgroundWorker1.RunWorkerAsync();
+            Thread.Sleep(300);
             backgroundWorker2.RunWorkerAsync();
         }
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+
             BeginInvoke(new MyDelegate(hddinfo));
 
             BeginInvoke(new MyDelegate(proc));

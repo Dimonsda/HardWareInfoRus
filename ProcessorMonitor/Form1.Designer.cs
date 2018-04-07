@@ -680,7 +680,7 @@
             this.circularProgressBar3.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.circularProgressBar3.ProgressWidth = 25;
             this.circularProgressBar3.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 36F);
-            this.circularProgressBar3.Size = new System.Drawing.Size(38, 39);
+            this.circularProgressBar3.Size = new System.Drawing.Size(40, 40);
             this.circularProgressBar3.StartAngle = 270;
             this.circularProgressBar3.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.circularProgressBar3.SubscriptColor = System.Drawing.Color.DimGray;
@@ -719,23 +719,25 @@
             // 
             this.tempcpu.AutoSize = true;
             this.tempcpu.BackColor = System.Drawing.SystemColors.Menu;
-            this.tempcpu.Location = new System.Drawing.Point(85, 311);
+            this.tempcpu.Location = new System.Drawing.Point(78, 311);
             this.tempcpu.Name = "tempcpu";
-            this.tempcpu.Size = new System.Drawing.Size(23, 19);
+            this.tempcpu.Size = new System.Drawing.Size(42, 19);
             this.tempcpu.TabIndex = 20;
-            this.tempcpu.Text = "99";
+            this.tempcpu.Text = "99 *C";
+            this.tempcpu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tempcpu.UseCustomBackColor = true;
             this.tempcpu.UseCustomForeColor = true;
             // 
             // core
             // 
-            this.core.AutoSize = true;
+            this.core.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.core.BackColor = System.Drawing.SystemColors.Menu;
-            this.core.Location = new System.Drawing.Point(57, 254);
+            this.core.Location = new System.Drawing.Point(56, 254);
             this.core.Name = "core";
-            this.core.Size = new System.Drawing.Size(38, 19);
+            this.core.Size = new System.Drawing.Size(95, 19);
             this.core.TabIndex = 21;
             this.core.Text = "Core";
+            this.core.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.core.UseCustomBackColor = true;
             this.core.UseCustomForeColor = true;
             // 
@@ -743,11 +745,12 @@
             // 
             this.cpuclock.AutoSize = true;
             this.cpuclock.BackColor = System.Drawing.SystemColors.Menu;
-            this.cpuclock.Location = new System.Drawing.Point(72, 273);
+            this.cpuclock.Location = new System.Drawing.Point(68, 273);
             this.cpuclock.Name = "cpuclock";
-            this.cpuclock.Size = new System.Drawing.Size(41, 19);
+            this.cpuclock.Size = new System.Drawing.Size(72, 19);
             this.cpuclock.TabIndex = 22;
-            this.cpuclock.Text = "Clock";
+            this.cpuclock.Text = "Clock MHz";
+            this.cpuclock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cpuclock.UseCustomBackColor = true;
             this.cpuclock.UseCustomForeColor = true;
             // 
@@ -755,11 +758,11 @@
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.SystemColors.Menu;
-            this.label7.Location = new System.Drawing.Point(87, 292);
+            this.label7.Location = new System.Drawing.Point(85, 292);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(16, 19);
+            this.label7.Size = new System.Drawing.Size(31, 19);
             this.label7.TabIndex = 23;
-            this.label7.Text = "0";
+            this.label7.Text = "0 %";
             this.label7.UseCustomBackColor = true;
             this.label7.UseCustomForeColor = true;
             // 
