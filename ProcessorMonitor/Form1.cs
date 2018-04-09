@@ -7,13 +7,16 @@ using System.Management;
 using System.Threading;
 using OpenHardwareMonitor.Hardware;
 
+using System.Diagnostics;
+using System.Collections.Generic;
+
 namespace ProcessorMonitor
 {
     public partial class Form1 : MetroForm
     {
-        
+
         public delegate void MyDelegate();
-       
+
         #region Hardware
         public void hddinfo()
         {
@@ -73,13 +76,30 @@ namespace ProcessorMonitor
             ManagementObjectSearcher searcher =
                     new ManagementObjectSearcher("root\\CIMV2",
                     "SELECT * FROM Win32_Processor");
-
+            string cpuname;
             foreach (ManagementObject queryObj in searcher.Get())
             {
-                cpusocket.Text = string.Format("CPU: {0}", queryObj["Name"]);
+                cpuname = queryObj["Name"].ToString();
+                cpusocket.Text = cpuname.Replace(" ", "");
+               // cpusocket.Text = string.Format("CPU: {0}", queryObj["Name"]);
                 Socket.Text = string.Format("Сокет: {0}", queryObj["SocketDesignation"]);
 
             }
+        }
+        public void cache()
+        {
+            List<string> result = new List<string>();
+            ManagementObjectSearcher searcher =
+                    new ManagementObjectSearcher("root\\CIMV2",
+                    "SELECT * FROM Win32_CacheMemory");
+            foreach (ManagementObject queryObj in searcher.Get())
+            {
+                result.Add(queryObj["MaxCacheSize"].ToString() + " KB");
+            }
+            L1Cache.Text = "L1 " + result[0];
+            L2Cache.Text = "L2 " + result[1];
+            L3Cache.Text = "L3 " + result[2];
+
         }
         public void ramspeed()
         {
@@ -138,12 +158,10 @@ namespace ProcessorMonitor
                 }
             }
         }
-
         public void testGPU()
         {
-            
-        }
 
+        }
         public void FanSpeedGPU()
         {
             Computer c = new Computer();
@@ -243,6 +261,8 @@ namespace ProcessorMonitor
         {
 
             BeginInvoke(new MyDelegate(hddinfo));
+
+            BeginInvoke(new MyDelegate(cache));
 
             BeginInvoke(new MyDelegate(proc));
 

@@ -39,6 +39,9 @@
             this.lblMemoryAvailable = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.L3Cache = new MetroFramework.Controls.MetroLabel();
+            this.L2Cache = new MetroFramework.Controls.MetroLabel();
+            this.L1Cache = new MetroFramework.Controls.MetroLabel();
             this.ramspeedl = new MetroFramework.Controls.MetroLabel();
             this.Socket = new MetroFramework.Controls.MetroLabel();
             this.cpusocket = new MetroFramework.Controls.MetroLabel();
@@ -193,6 +196,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.L3Cache);
+            this.groupBox2.Controls.Add(this.L2Cache);
+            this.groupBox2.Controls.Add(this.L1Cache);
             this.groupBox2.Controls.Add(this.ramspeedl);
             this.groupBox2.Controls.Add(this.Socket);
             this.groupBox2.Controls.Add(this.cpusocket);
@@ -204,6 +210,36 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Процессор";
+            // 
+            // L3Cache
+            // 
+            this.L3Cache.AutoSize = true;
+            this.L3Cache.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.L3Cache.Location = new System.Drawing.Point(320, 87);
+            this.L3Cache.Name = "L3Cache";
+            this.L3Cache.Size = new System.Drawing.Size(49, 15);
+            this.L3Cache.TabIndex = 25;
+            this.L3Cache.Text = "L1 Cache";
+            // 
+            // L2Cache
+            // 
+            this.L2Cache.AutoSize = true;
+            this.L2Cache.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.L2Cache.Location = new System.Drawing.Point(320, 72);
+            this.L2Cache.Name = "L2Cache";
+            this.L2Cache.Size = new System.Drawing.Size(49, 15);
+            this.L2Cache.TabIndex = 24;
+            this.L2Cache.Text = "L1 Cache";
+            // 
+            // L1Cache
+            // 
+            this.L1Cache.AutoSize = true;
+            this.L1Cache.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.L1Cache.Location = new System.Drawing.Point(320, 57);
+            this.L1Cache.Name = "L1Cache";
+            this.L1Cache.Size = new System.Drawing.Size(49, 15);
+            this.L1Cache.TabIndex = 23;
+            this.L1Cache.Text = "L1 Cache";
             // 
             // ramspeedl
             // 
@@ -929,6 +965,9 @@
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TextBox Network;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private MetroFramework.Controls.MetroLabel L2Cache;
+        private MetroFramework.Controls.MetroLabel L1Cache;
+        private MetroFramework.Controls.MetroLabel L3Cache;
     }
 }
 
