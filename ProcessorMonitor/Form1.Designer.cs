@@ -48,7 +48,6 @@
             this.lblProcessor = new MetroFramework.Controls.MetroLabel();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
-            this.cpu = new System.Diagnostics.PerformanceCounter();
             this.Memory = new System.Diagnostics.PerformanceCounter();
             this.Hddinfo1 = new System.Diagnostics.PerformanceCounter();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -95,11 +94,13 @@
             this.ramproc = new MetroFramework.Controls.MetroLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.testtexbox = new System.Windows.Forms.TextBox();
+            this.Multipl = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pcProcessor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcMemoryAvailable)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cpu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Memory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hddinfo1)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -117,6 +118,7 @@
             this.groupBox8.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.metroTabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -196,6 +198,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.Multipl);
             this.groupBox2.Controls.Add(this.L3Cache);
             this.groupBox2.Controls.Add(this.L2Cache);
             this.groupBox2.Controls.Add(this.L1Cache);
@@ -343,12 +346,6 @@
             this.circularProgressBar2.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar2.Value = 5;
             // 
-            // cpu
-            // 
-            this.cpu.CategoryName = "Сведения о процессоре";
-            this.cpu.CounterName = "Частота процессора";
-            this.cpu.InstanceName = "0,_Total";
-            // 
             // Memory
             // 
             this.Memory.CategoryName = "Память";
@@ -447,9 +444,10 @@
             this.metroTabControl1.Controls.Add(this.tabPage4);
             this.metroTabControl1.Controls.Add(this.tabPage5);
             this.metroTabControl1.Controls.Add(this.tabPage6);
+            this.metroTabControl1.Controls.Add(this.metroTabPage1);
             this.metroTabControl1.Location = new System.Drawing.Point(10, 94);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.SelectedIndex = 6;
             this.metroTabControl1.Size = new System.Drawing.Size(298, 239);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Green;
             this.metroTabControl1.TabIndex = 23;
@@ -755,7 +753,7 @@
             // 
             this.tempcpu.AutoSize = true;
             this.tempcpu.BackColor = System.Drawing.SystemColors.Menu;
-            this.tempcpu.Location = new System.Drawing.Point(78, 311);
+            this.tempcpu.Location = new System.Drawing.Point(85, 311);
             this.tempcpu.Name = "tempcpu";
             this.tempcpu.Size = new System.Drawing.Size(42, 19);
             this.tempcpu.TabIndex = 20;
@@ -836,6 +834,42 @@
             // 
             this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
             // 
+            // metroTabPage1
+            // 
+            this.metroTabPage1.Controls.Add(this.testtexbox);
+            this.metroTabPage1.HorizontalScrollbarBarColor = true;
+            this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroTabPage1.HorizontalScrollbarSize = 10;
+            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
+            this.metroTabPage1.Name = "metroTabPage1";
+            this.metroTabPage1.Size = new System.Drawing.Size(290, 197);
+            this.metroTabPage1.TabIndex = 6;
+            this.metroTabPage1.Text = "metroTabPage1";
+            this.metroTabPage1.VerticalScrollbarBarColor = true;
+            this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
+            this.metroTabPage1.VerticalScrollbarSize = 10;
+            // 
+            // testtexbox
+            // 
+            this.testtexbox.BackColor = System.Drawing.Color.White;
+            this.testtexbox.Location = new System.Drawing.Point(7, 28);
+            this.testtexbox.Multiline = true;
+            this.testtexbox.Name = "testtexbox";
+            this.testtexbox.ReadOnly = true;
+            this.testtexbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.testtexbox.ShortcutsEnabled = false;
+            this.testtexbox.Size = new System.Drawing.Size(276, 141);
+            this.testtexbox.TabIndex = 18;
+            // 
+            // Multipl
+            // 
+            this.Multipl.AutoSize = true;
+            this.Multipl.Location = new System.Drawing.Point(205, 16);
+            this.Multipl.Name = "Multipl";
+            this.Multipl.Size = new System.Drawing.Size(17, 19);
+            this.Multipl.TabIndex = 26;
+            this.Multipl.Text = "X";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -870,7 +904,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cpu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Memory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hddinfo1)).EndInit();
             this.groupBox3.ResumeLayout(false);
@@ -896,6 +929,8 @@
             this.tabPage6.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            this.metroTabPage1.ResumeLayout(false);
+            this.metroTabPage1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -906,7 +941,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private CircularProgressBar.CircularProgressBar circularProgressBar1;
-        private System.Diagnostics.PerformanceCounter cpu;
         private System.Diagnostics.PerformanceCounter Memory;
         private System.Diagnostics.PerformanceCounter Hddinfo1;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -968,6 +1002,9 @@
         private MetroFramework.Controls.MetroLabel L2Cache;
         private MetroFramework.Controls.MetroLabel L1Cache;
         private MetroFramework.Controls.MetroLabel L3Cache;
+        private MetroFramework.Controls.MetroTabPage metroTabPage1;
+        private System.Windows.Forms.TextBox testtexbox;
+        private MetroFramework.Controls.MetroLabel Multipl;
     }
 }
 

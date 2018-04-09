@@ -79,11 +79,10 @@ namespace ProcessorMonitor
             string cpuname;
             foreach (ManagementObject queryObj in searcher.Get())
             {
-                cpuname = queryObj["Name"].ToString();
-                cpusocket.Text = cpuname.Replace(" ", "");
-               // cpusocket.Text = string.Format("CPU: {0}", queryObj["Name"]);
+                //cpuname = queryObj["Name"].ToString();
+                //cpusocket.Text = cpuname.Replace(" ", "");
+                cpusocket.Text = string.Format("CPU: {0}", queryObj["Name"]);
                 Socket.Text = string.Format("Сокет: {0}", queryObj["SocketDesignation"]);
-
             }
         }
         public void cache()
@@ -141,7 +140,7 @@ namespace ProcessorMonitor
             c.Open();
             foreach (var hardware in c.Hardware)
             {
-                if (hardware.HardwareType == HardwareType.GpuNvidia)
+                if (hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuAti)
                 {
                     hardware.Update();
                     foreach (var sensors in hardware.Sensors)
@@ -158,10 +157,43 @@ namespace ProcessorMonitor
                 }
             }
         }
-        public void testGPU()
-        {
 
+        public void Test()
+        {
+            List<double> result = new List<double>();
+            Computer c = new Computer();
+            c.CPUEnabled = true;
+            c.Open();
+            testtexbox.AppendText("");
+
+
+            foreach (var hardware in c.Hardware)
+            {
+                if (hardware.HardwareType == HardwareType.CPU)
+                {
+                    hardware.Update();
+                    foreach (var sensors in hardware.Sensors)
+                    {
+                        if (sensors.SensorType == SensorType.Clock)
+                        {
+                            result.Add(Convert.ToDouble(sensors.Value));
+                            
+                           
+                            //testtexbox.AppendText(result[0].ToString() + Environment.NewLine);
+                           // double tmp = Convert.ToDouble(sensors.Value);
+                            //testtexbox.Text = "" + tmp; //AppendText( + Environment.NewLine);
+
+                        }
+                    }
+                    cpuclock.Text = Math.Truncate(result[0]).ToString() + " MHz";
+                    Multipl.Text = "Множитель: " + Math.Truncate(result[0]) / Math.Truncate(result[4]);
+                }
+            }
         }
+
+
+        
+
         public void FanSpeedGPU()
         {
             Computer c = new Computer();
@@ -262,6 +294,8 @@ namespace ProcessorMonitor
 
             BeginInvoke(new MyDelegate(hddinfo));
 
+            BeginInvoke(new MyDelegate(Test));
+
             BeginInvoke(new MyDelegate(cache));
 
             BeginInvoke(new MyDelegate(proc));
@@ -322,7 +356,7 @@ namespace ProcessorMonitor
             circularProgressBar2.Value = (int)Memory.NextValue();
 
             //Частота
-            cpuclock.Text = (cpu.NextValue()).ToString() + " Mhz";
+            //cpuclock.Text = (cpu.NextValue()).ToString() + " Mhz";
 
             ramproc.Text = Math.Truncate(Memory.NextValue()).ToString() + "%";
             //HDD
@@ -336,6 +370,7 @@ namespace ProcessorMonitor
 
         private void timer2_Tick(object sender, EventArgs e)
         {
+            Test();
             FanSpeedGPU();
             temperatureCPU();
             temperatureGPU();
