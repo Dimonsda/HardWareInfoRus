@@ -20,7 +20,6 @@ namespace ProcessorMonitor
         #region Hardware
         public void hddinfo()
         {
-
             ManagementObjectSearcher searcher =
                     new ManagementObjectSearcher("root\\Microsoft\\Windows\\Storage",
                     "SELECT * FROM MSFT_PhysicalDisk");
@@ -29,7 +28,6 @@ namespace ProcessorMonitor
             {
                 hddlist.AppendText(string.Format("HDD: {0}", queryObj["FriendlyName"]) + Environment.NewLine + string.Format("Объём: {0}", Math.Truncate(Convert.ToDouble(queryObj["Size"]) / 1024 / 1024 / 1024) + " GB" + Environment.NewLine));
             }
-
         }
         public void raminfo2()
         {
@@ -157,14 +155,13 @@ namespace ProcessorMonitor
                 }
             }
         }
-
-        public void Test()
+        public void CPUHardInfo()
         {
             List<double> result = new List<double>();
             Computer c = new Computer();
             c.CPUEnabled = true;
             c.Open();
-            testtexbox.AppendText("");
+            voltagebox.AppendText("");
 
 
             foreach (var hardware in c.Hardware)
@@ -177,12 +174,8 @@ namespace ProcessorMonitor
                         if (sensors.SensorType == SensorType.Clock)
                         {
                             result.Add(Convert.ToDouble(sensors.Value));
-                            
-                           
-                            //testtexbox.AppendText(result[0].ToString() + Environment.NewLine);
-                           // double tmp = Convert.ToDouble(sensors.Value);
-                            //testtexbox.Text = "" + tmp; //AppendText( + Environment.NewLine);
 
+                            //testtexbox.AppendText(result[0].ToString() + Environment.NewLine);
                         }
                     }
                     cpuclock.Text = Math.Truncate(result[0]).ToString() + " MHz";
@@ -190,10 +183,71 @@ namespace ProcessorMonitor
                 }
             }
         }
+        public void Voltage()
+        {
+            List<double> result = new List<double>();
+            Computer c = new Computer();
+            c.CPUEnabled = true;
+            c.MainboardEnabled = true;
+            c.Open();
+
+            foreach (var hardware in c.Hardware)
+            {
+                // This will be in the mainboard
+                foreach (var subhardware in hardware.SubHardware)
+                {
+                    // This will be in the SuperIO
+                    subhardware.Update();
+                    voltagebox.Clear();
+                    if (subhardware.Sensors.Length > 0) // Index out of bounds check
+                    {
+                        foreach (var sensor in subhardware.Sensors)
+                        {
+                            // Look for the main fan sensor
+                            if (sensor.SensorType == SensorType.Voltage)
+                            {
+                                voltagebox.AppendText(sensor.Name + " " + sensor.Value + Environment.NewLine);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void Test()
+        {
+           
+        }
 
 
-        
+        public void CPUFan()
+        {
+            Computer c = new Computer();
+            c.CPUEnabled = true;
+            c.MainboardEnabled = true;
+            c.Open();
 
+            foreach (var hardware in c.Hardware)
+            {
+                // This will be in the mainboard
+                foreach (var subhardware in hardware.SubHardware)
+                {
+                    // This will be in the SuperIO
+                    subhardware.Update();
+                    if (subhardware.Sensors.Length > 0) // Index out of bounds check
+                    {
+                        foreach (var sensor in subhardware.Sensors)
+                        {
+                            // Look for the main fan sensor
+                            if (sensor.SensorType == SensorType.Fan)
+                            {
+                                CpuRPM.Text = string.Format("CPU Fan Speed:" + Convert.ToString((int)(float)sensor.Value) + " RPM");
+                            }
+                        }
+                    }
+                }
+            }
+        }
         public void FanSpeedGPU()
         {
             Computer c = new Computer();
@@ -278,7 +332,7 @@ namespace ProcessorMonitor
             }
 
         }
-        #endregion 
+        #endregion
 
 
         public Form1()
@@ -295,6 +349,12 @@ namespace ProcessorMonitor
             BeginInvoke(new MyDelegate(hddinfo));
 
             BeginInvoke(new MyDelegate(Test));
+
+            BeginInvoke(new MyDelegate(Voltage));
+
+            BeginInvoke(new MyDelegate(CPUFan));
+
+            BeginInvoke(new MyDelegate(CPUHardInfo));
 
             BeginInvoke(new MyDelegate(cache));
 
@@ -370,10 +430,12 @@ namespace ProcessorMonitor
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            Test();
+            CPUHardInfo();
+            Voltage();
             FanSpeedGPU();
             temperatureCPU();
             temperatureGPU();
+            CPUFan();
         }
     }
 }

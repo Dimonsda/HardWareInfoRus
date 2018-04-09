@@ -39,6 +39,7 @@
             this.lblMemoryAvailable = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Multipl = new MetroFramework.Controls.MetroLabel();
             this.L3Cache = new MetroFramework.Controls.MetroLabel();
             this.L2Cache = new MetroFramework.Controls.MetroLabel();
             this.L1Cache = new MetroFramework.Controls.MetroLabel();
@@ -78,6 +79,7 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.Network = new System.Windows.Forms.TextBox();
+            this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.version = new MetroFramework.Controls.MetroLabel();
             this.osnumber = new MetroFramework.Controls.MetroLabel();
             this.osviever = new MetroFramework.Controls.MetroLabel();
@@ -94,9 +96,12 @@
             this.ramproc = new MetroFramework.Controls.MetroLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
-            this.testtexbox = new System.Windows.Forms.TextBox();
-            this.Multipl = new MetroFramework.Controls.MetroLabel();
+            this.CpuRPM = new MetroFramework.Controls.MetroLabel();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.voltagebox = new System.Windows.Forms.TextBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.testbox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pcProcessor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcMemoryAvailable)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -119,6 +124,9 @@
             this.tabPage6.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -213,6 +221,15 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Процессор";
+            // 
+            // Multipl
+            // 
+            this.Multipl.AutoSize = true;
+            this.Multipl.Location = new System.Drawing.Point(205, 16);
+            this.Multipl.Name = "Multipl";
+            this.Multipl.Size = new System.Drawing.Size(17, 19);
+            this.Multipl.TabIndex = 26;
+            this.Multipl.Text = "X";
             // 
             // L3Cache
             // 
@@ -431,7 +448,7 @@
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Location = new System.Drawing.Point(403, 26);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(319, 339);
+            this.groupBox4.Size = new System.Drawing.Size(319, 361);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Системная информация";
@@ -445,10 +462,11 @@
             this.metroTabControl1.Controls.Add(this.tabPage5);
             this.metroTabControl1.Controls.Add(this.tabPage6);
             this.metroTabControl1.Controls.Add(this.metroTabPage1);
+            this.metroTabControl1.Controls.Add(this.tabPage7);
             this.metroTabControl1.Location = new System.Drawing.Point(10, 94);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 6;
-            this.metroTabControl1.Size = new System.Drawing.Size(298, 239);
+            this.metroTabControl1.SelectedIndex = 7;
+            this.metroTabControl1.Size = new System.Drawing.Size(298, 246);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Green;
             this.metroTabControl1.TabIndex = 23;
             this.metroTabControl1.UseSelectable = true;
@@ -458,7 +476,7 @@
             this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Location = new System.Drawing.Point(4, 38);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(290, 197);
+            this.tabPage1.Size = new System.Drawing.Size(290, 204);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "HDD";
             // 
@@ -513,7 +531,7 @@
             this.tabPage2.Controls.Add(this.raznoe);
             this.tabPage2.Location = new System.Drawing.Point(4, 38);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(290, 197);
+            this.tabPage2.Size = new System.Drawing.Size(290, 204);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "RAM";
             // 
@@ -534,7 +552,7 @@
             this.tabPage3.Controls.Add(this.groupBox5);
             this.tabPage3.Location = new System.Drawing.Point(4, 38);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(290, 197);
+            this.tabPage3.Size = new System.Drawing.Size(290, 204);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "USB";
             // 
@@ -565,7 +583,7 @@
             this.tabPage4.Controls.Add(this.groupBox7);
             this.tabPage4.Location = new System.Drawing.Point(4, 38);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(290, 197);
+            this.tabPage4.Size = new System.Drawing.Size(290, 204);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Порты";
             // 
@@ -596,7 +614,7 @@
             this.tabPage5.Controls.Add(this.groupBox8);
             this.tabPage5.Location = new System.Drawing.Point(4, 38);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(290, 197);
+            this.tabPage5.Size = new System.Drawing.Size(290, 204);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Плата";
             // 
@@ -628,7 +646,7 @@
             this.tabPage6.Controls.Add(this.groupBox9);
             this.tabPage6.Location = new System.Drawing.Point(4, 38);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(290, 197);
+            this.tabPage6.Size = new System.Drawing.Size(290, 204);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Сеть";
             // 
@@ -653,6 +671,21 @@
             this.Network.ShortcutsEnabled = false;
             this.Network.Size = new System.Drawing.Size(276, 172);
             this.Network.TabIndex = 17;
+            // 
+            // metroTabPage1
+            // 
+            this.metroTabPage1.Controls.Add(this.groupBox10);
+            this.metroTabPage1.HorizontalScrollbarBarColor = true;
+            this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroTabPage1.HorizontalScrollbarSize = 10;
+            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
+            this.metroTabPage1.Name = "metroTabPage1";
+            this.metroTabPage1.Size = new System.Drawing.Size(290, 204);
+            this.metroTabPage1.TabIndex = 6;
+            this.metroTabPage1.Text = "Напряжение";
+            this.metroTabPage1.VerticalScrollbarBarColor = true;
+            this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
+            this.metroTabPage1.VerticalScrollbarSize = 10;
             // 
             // version
             // 
@@ -834,48 +867,75 @@
             // 
             this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
             // 
-            // metroTabPage1
+            // CpuRPM
             // 
-            this.metroTabPage1.Controls.Add(this.testtexbox);
-            this.metroTabPage1.HorizontalScrollbarBarColor = true;
-            this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.HorizontalScrollbarSize = 10;
-            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(290, 197);
-            this.metroTabPage1.TabIndex = 6;
-            this.metroTabPage1.Text = "metroTabPage1";
-            this.metroTabPage1.VerticalScrollbarBarColor = true;
-            this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.VerticalScrollbarSize = 10;
+            this.CpuRPM.AutoSize = true;
+            this.CpuRPM.Location = new System.Drawing.Point(12, 368);
+            this.CpuRPM.Name = "CpuRPM";
+            this.CpuRPM.Size = new System.Drawing.Size(37, 19);
+            this.CpuRPM.TabIndex = 27;
+            this.CpuRPM.Text = "RPM";
             // 
-            // testtexbox
+            // groupBox10
             // 
-            this.testtexbox.BackColor = System.Drawing.Color.White;
-            this.testtexbox.Location = new System.Drawing.Point(7, 28);
-            this.testtexbox.Multiline = true;
-            this.testtexbox.Name = "testtexbox";
-            this.testtexbox.ReadOnly = true;
-            this.testtexbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.testtexbox.ShortcutsEnabled = false;
-            this.testtexbox.Size = new System.Drawing.Size(276, 141);
-            this.testtexbox.TabIndex = 18;
+            this.groupBox10.Controls.Add(this.voltagebox);
+            this.groupBox10.Location = new System.Drawing.Point(7, 4);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(276, 197);
+            this.groupBox10.TabIndex = 21;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Voltage";
             // 
-            // Multipl
+            // voltagebox
             // 
-            this.Multipl.AutoSize = true;
-            this.Multipl.Location = new System.Drawing.Point(205, 16);
-            this.Multipl.Name = "Multipl";
-            this.Multipl.Size = new System.Drawing.Size(17, 19);
-            this.Multipl.TabIndex = 26;
-            this.Multipl.Text = "X";
+            this.voltagebox.BackColor = System.Drawing.Color.White;
+            this.voltagebox.Location = new System.Drawing.Point(0, 19);
+            this.voltagebox.Multiline = true;
+            this.voltagebox.Name = "voltagebox";
+            this.voltagebox.ReadOnly = true;
+            this.voltagebox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.voltagebox.ShortcutsEnabled = false;
+            this.voltagebox.Size = new System.Drawing.Size(276, 172);
+            this.voltagebox.TabIndex = 17;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.groupBox11);
+            this.tabPage7.Location = new System.Drawing.Point(4, 38);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(290, 204);
+            this.tabPage7.TabIndex = 7;
+            this.tabPage7.Text = "Test";
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.testbox);
+            this.groupBox11.Location = new System.Drawing.Point(7, 4);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(276, 197);
+            this.groupBox11.TabIndex = 22;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Test";
+            // 
+            // testbox
+            // 
+            this.testbox.BackColor = System.Drawing.Color.White;
+            this.testbox.Location = new System.Drawing.Point(0, 19);
+            this.testbox.Multiline = true;
+            this.testbox.Name = "testbox";
+            this.testbox.ReadOnly = true;
+            this.testbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.testbox.ShortcutsEnabled = false;
+            this.testbox.Size = new System.Drawing.Size(276, 172);
+            this.testbox.TabIndex = 17;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(723, 375);
+            this.ClientSize = new System.Drawing.Size(723, 389);
+            this.Controls.Add(this.CpuRPM);
             this.Controls.Add(this.ramproc);
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.label7);
@@ -930,7 +990,11 @@
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.metroTabPage1.ResumeLayout(false);
-            this.metroTabPage1.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1003,8 +1067,13 @@
         private MetroFramework.Controls.MetroLabel L1Cache;
         private MetroFramework.Controls.MetroLabel L3Cache;
         private MetroFramework.Controls.MetroTabPage metroTabPage1;
-        private System.Windows.Forms.TextBox testtexbox;
         private MetroFramework.Controls.MetroLabel Multipl;
+        private MetroFramework.Controls.MetroLabel CpuRPM;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.TextBox voltagebox;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.TextBox testbox;
     }
 }
 
