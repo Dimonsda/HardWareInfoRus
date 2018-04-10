@@ -17,6 +17,8 @@ namespace ProcessorMonitor
 
         public delegate void MyDelegate();
 
+        Computer c = new Computer();
+
         #region Hardware
         public void hddinfo()
         {
@@ -112,7 +114,6 @@ namespace ProcessorMonitor
         }
         public void temperatureCPU()
         {
-            Computer c = new Computer();
             c.CPUEnabled = true;
             c.Open();
             foreach (var hardware in c.Hardware)
@@ -133,7 +134,6 @@ namespace ProcessorMonitor
         }
         public void temperatureGPU()
         {
-            Computer c = new Computer();
             c.GPUEnabled = true;
             c.Open();
             foreach (var hardware in c.Hardware)
@@ -158,7 +158,6 @@ namespace ProcessorMonitor
         public void CPUHardInfo()
         {
             List<double> result = new List<double>();
-            Computer c = new Computer();
             c.CPUEnabled = true;
             c.Open();
             voltagebox.AppendText("");
@@ -178,15 +177,19 @@ namespace ProcessorMonitor
                             //testtexbox.AppendText(result[0].ToString() + Environment.NewLine);
                         }
                     }
-                    cpuclock.Text = Math.Truncate(result[0]).ToString() + " MHz";
-                    Multipl.Text = "Множитель: " + Math.Truncate(result[0]) / Math.Truncate(result[4]);
+                    try
+                    {
+                        cpuclock.Text = Math.Truncate(result[0]).ToString() + " MHz";
+                        Multipl.Text = "Множитель: " + Math.Truncate(result[0]) / Math.Truncate(result[4]);
+                    }
+                    catch { }
+                   
                 }
             }
         }
         public void Voltage()
         {
             List<double> result = new List<double>();
-            Computer c = new Computer();
             c.CPUEnabled = true;
             c.MainboardEnabled = true;
             c.Open();
