@@ -19,6 +19,7 @@ namespace ProcessorMonitor
 
         Computer c = new Computer();
 
+
         #region Hardware
         public void hddinfo()
         {
@@ -95,9 +96,14 @@ namespace ProcessorMonitor
             {
                 result.Add(queryObj["MaxCacheSize"].ToString() + " KB");
             }
-            L1Cache.Text = "L1 " + result[0];
-            L2Cache.Text = "L2 " + result[1];
-            L3Cache.Text = "L3 " + result[2];
+            try
+            {
+                L1Cache.Text = "L1 " + result[0];
+                L2Cache.Text = "L2 " + result[1];
+                L3Cache.Text = "L3 " + result[2];
+            }
+            catch { }
+            
 
         }
         public void ramspeed()
@@ -180,16 +186,17 @@ namespace ProcessorMonitor
                     try
                     {
                         cpuclock.Text = Math.Truncate(result[0]).ToString() + " MHz";
-                        Multipl.Text = "Множитель: " + Math.Truncate(result[0]) / Math.Truncate(result[4]);
+                        var clock = Math.Truncate(result[0]) / Math.Truncate(result[4]);
+                        Multipl.Text = "Множитель: " + Math.Round(clock);
                     }
                     catch { }
-                   
+
                 }
             }
         }
+
         public void Voltage()
         {
-            List<double> result = new List<double>();
             c.CPUEnabled = true;
             c.MainboardEnabled = true;
             c.Open();
@@ -219,7 +226,7 @@ namespace ProcessorMonitor
 
         public void Test()
         {
-           
+
         }
 
 
@@ -244,7 +251,7 @@ namespace ProcessorMonitor
                             // Look for the main fan sensor
                             if (sensor.SensorType == SensorType.Fan)
                             {
-                                CpuRPM.Text = string.Format("CPU Fan Speed:" + Convert.ToString((int)(float)sensor.Value) + " RPM");
+                                CpuRPM.Text = string.Format("CPU Fan Speed: " + Convert.ToString((int)(float)sensor.Value) + " RPM");
                             }
                         }
                     }
@@ -335,6 +342,28 @@ namespace ProcessorMonitor
             }
 
         }
+
+        public void wininfo()
+        {
+            var TotalRam = new Microsoft.VisualBasic.Devices.ComputerInfo().TotalPhysicalMemory;
+            temper.Text = ((TotalRam / 1024 / 1024) + 1).ToString();
+
+            //Название ОС
+            osviever.Text = "ОС: " + new Microsoft.VisualBasic.Devices.ComputerInfo().OSFullName;
+            label5.Text = new Microsoft.VisualBasic.Devices.Computer().Name;
+
+            //Разрешение
+            MonitorSize.Text = "Разрешение: " + SystemInformation.PrimaryMonitorSize.Width.ToString() + " x " + SystemInformation.PrimaryMonitorSize.Height.ToString();
+
+            
+            //HDD
+            HDD.Text = "Свободно " + (Hddinfo1.NextValue()).ToString("00.##") + "%";
+            
+
+            core.Text = "Число ядер: " + Convert.ToString(Environment.ProcessorCount);
+            osnumber.Text = "Ядро: " + Convert.ToString(Environment.OSVersion);
+            version.Text = "Версия: " + Convert.ToString(Environment.Version);
+        }
         #endregion
 
 
@@ -380,6 +409,8 @@ namespace ProcessorMonitor
         {
             BeginInvoke(new MyDelegate(FanSpeedGPU));
 
+            BeginInvoke(new MyDelegate(wininfo));
+
             BeginInvoke(new MyDelegate(raminfo2));
 
             BeginInvoke(new MyDelegate(raminfo));
@@ -398,18 +429,9 @@ namespace ProcessorMonitor
 
         public void timer1_Tick(object sender, EventArgs e)
         {
-            var TotalRam = new Microsoft.VisualBasic.Devices.ComputerInfo().TotalPhysicalMemory;
-            temper.Text = ((TotalRam / 1024 / 1024) + 1).ToString();
-
-            //Название ОС
-            osviever.Text = "ОС: " + new Microsoft.VisualBasic.Devices.ComputerInfo().OSFullName;
             time.Text = new Microsoft.VisualBasic.Devices.Clock().LocalTime.ToString();
-            label5.Text = new Microsoft.VisualBasic.Devices.Computer().Name;
 
-            //Разрешение
-            MonitorSize.Text = "Разрешение: " + SystemInformation.PrimaryMonitorSize.Width.ToString() + " x " + SystemInformation.PrimaryMonitorSize.Height.ToString();
-
-            //Загрузка ЦП(невидимая)
+            //Проц и оператива
             progressBar1.Value = (int)(pcProcessor.NextValue());
             circularProgressBar1.Value = progressBar1.Value;
             label7.Text = progressBar1.Value.ToString() + "%";
@@ -417,18 +439,11 @@ namespace ProcessorMonitor
 
             lblMemoryAvailable.Text = ((int)pcMemoryAvailable.NextValue()).ToString();
             circularProgressBar2.Value = (int)Memory.NextValue();
-
-            //Частота
-            //cpuclock.Text = (cpu.NextValue()).ToString() + " Mhz";
-
+            
             ramproc.Text = Math.Truncate(Memory.NextValue()).ToString() + "%";
-            //HDD
-            HDD.Text = "Свободно " + (Hddinfo1.NextValue()).ToString("00.##") + "%";
-            label8.Text = (Hddinfo2.NextValue() / 1024 / 1024).ToString("0.###") + " MB/sec";
 
-            core.Text = "Число ядер: " + Convert.ToString(Environment.ProcessorCount);
-            osnumber.Text = "Ядро: " + Convert.ToString(Environment.OSVersion);
-            version.Text = "Версия: " + Convert.ToString(Environment.Version);
+            temperatureGPU();
+            label8.Text = (Hddinfo2.NextValue() / 1024 / 1024).ToString("0.###") + " MB/sec";
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -437,7 +452,7 @@ namespace ProcessorMonitor
             Voltage();
             FanSpeedGPU();
             temperatureCPU();
-            temperatureGPU();
+            
             CPUFan();
         }
     }

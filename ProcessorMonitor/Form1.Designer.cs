@@ -39,7 +39,7 @@
             this.lblMemoryAvailable = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Multipl = new MetroFramework.Controls.MetroLabel();
+            this.CpuRPM = new MetroFramework.Controls.MetroLabel();
             this.L3Cache = new MetroFramework.Controls.MetroLabel();
             this.L2Cache = new MetroFramework.Controls.MetroLabel();
             this.L1Cache = new MetroFramework.Controls.MetroLabel();
@@ -60,6 +60,9 @@
             this.Hddinfo2 = new System.Diagnostics.PerformanceCounter();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.testbox = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label8 = new MetroFramework.Controls.MetroLabel();
@@ -80,6 +83,8 @@
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.Network = new System.Windows.Forms.TextBox();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.voltagebox = new System.Windows.Forms.TextBox();
             this.version = new MetroFramework.Controls.MetroLabel();
             this.osnumber = new MetroFramework.Controls.MetroLabel();
             this.osviever = new MetroFramework.Controls.MetroLabel();
@@ -96,12 +101,7 @@
             this.ramproc = new MetroFramework.Controls.MetroLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.CpuRPM = new MetroFramework.Controls.MetroLabel();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.voltagebox = new System.Windows.Forms.TextBox();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.testbox = new System.Windows.Forms.TextBox();
+            this.Multipl = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pcProcessor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcMemoryAvailable)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -112,6 +112,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Hddinfo2)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -125,15 +127,13 @@
             this.groupBox9.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.groupBox10.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(342, 79);
+            this.progressBar1.Location = new System.Drawing.Point(342, 106);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(13, 22);
+            this.progressBar1.Size = new System.Drawing.Size(14, 10);
             this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 1;
             this.progressBar1.Visible = false;
@@ -161,7 +161,7 @@
             this.groupBox1.Controls.Add(this.metroLabel2);
             this.groupBox1.Controls.Add(this.lblMemoryAvailable);
             this.groupBox1.Controls.Add(this.metroLabel1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 136);
+            this.groupBox1.Location = new System.Drawing.Point(12, 268);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(155, 54);
             this.groupBox1.TabIndex = 3;
@@ -206,7 +206,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.Multipl);
+            this.groupBox2.Controls.Add(this.CpuRPM);
             this.groupBox2.Controls.Add(this.L3Cache);
             this.groupBox2.Controls.Add(this.L2Cache);
             this.groupBox2.Controls.Add(this.L1Cache);
@@ -217,45 +217,45 @@
             this.groupBox2.Controls.Add(this.progressBar1);
             this.groupBox2.Location = new System.Drawing.Point(12, 26);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(385, 107);
+            this.groupBox2.Size = new System.Drawing.Size(385, 129);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Процессор";
             // 
-            // Multipl
+            // CpuRPM
             // 
-            this.Multipl.AutoSize = true;
-            this.Multipl.Location = new System.Drawing.Point(205, 16);
-            this.Multipl.Name = "Multipl";
-            this.Multipl.Size = new System.Drawing.Size(17, 19);
-            this.Multipl.TabIndex = 26;
-            this.Multipl.Text = "X";
+            this.CpuRPM.AutoSize = true;
+            this.CpuRPM.Location = new System.Drawing.Point(6, 94);
+            this.CpuRPM.Name = "CpuRPM";
+            this.CpuRPM.Size = new System.Drawing.Size(37, 19);
+            this.CpuRPM.TabIndex = 27;
+            this.CpuRPM.Text = "RPM";
             // 
             // L3Cache
             // 
             this.L3Cache.AutoSize = true;
             this.L3Cache.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.L3Cache.Location = new System.Drawing.Point(320, 87);
+            this.L3Cache.Location = new System.Drawing.Point(320, 107);
             this.L3Cache.Name = "L3Cache";
-            this.L3Cache.Size = new System.Drawing.Size(49, 15);
+            this.L3Cache.Size = new System.Drawing.Size(48, 15);
             this.L3Cache.TabIndex = 25;
-            this.L3Cache.Text = "L1 Cache";
+            this.L3Cache.Text = "L3Cache";
             // 
             // L2Cache
             // 
             this.L2Cache.AutoSize = true;
             this.L2Cache.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.L2Cache.Location = new System.Drawing.Point(320, 72);
+            this.L2Cache.Location = new System.Drawing.Point(320, 92);
             this.L2Cache.Name = "L2Cache";
-            this.L2Cache.Size = new System.Drawing.Size(49, 15);
+            this.L2Cache.Size = new System.Drawing.Size(51, 15);
             this.L2Cache.TabIndex = 24;
-            this.L2Cache.Text = "L1 Cache";
+            this.L2Cache.Text = "L2 Cache";
             // 
             // L1Cache
             // 
             this.L1Cache.AutoSize = true;
             this.L1Cache.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.L1Cache.Location = new System.Drawing.Point(320, 57);
+            this.L1Cache.Location = new System.Drawing.Point(320, 77);
             this.L1Cache.Name = "L1Cache";
             this.L1Cache.Size = new System.Drawing.Size(49, 15);
             this.L1Cache.TabIndex = 23;
@@ -307,7 +307,7 @@
             this.circularProgressBar1.InnerColor = System.Drawing.SystemColors.Menu;
             this.circularProgressBar1.InnerMargin = 2;
             this.circularProgressBar1.InnerWidth = -1;
-            this.circularProgressBar1.Location = new System.Drawing.Point(12, 196);
+            this.circularProgressBar1.Location = new System.Drawing.Point(756, 21);
             this.circularProgressBar1.MarqueeAnimationSpeed = 15;
             this.circularProgressBar1.Name = "circularProgressBar1";
             this.circularProgressBar1.OuterColor = System.Drawing.Color.SkyBlue;
@@ -340,7 +340,7 @@
             this.circularProgressBar2.InnerColor = System.Drawing.SystemColors.Menu;
             this.circularProgressBar2.InnerMargin = 2;
             this.circularProgressBar2.InnerWidth = -1;
-            this.circularProgressBar2.Location = new System.Drawing.Point(217, 196);
+            this.circularProgressBar2.Location = new System.Drawing.Point(766, 197);
             this.circularProgressBar2.MarqueeAnimationSpeed = 15;
             this.circularProgressBar2.Name = "circularProgressBar2";
             this.circularProgressBar2.OuterColor = System.Drawing.Color.SkyBlue;
@@ -381,9 +381,9 @@
             this.groupBox3.Controls.Add(this.tempgpu);
             this.groupBox3.Controls.Add(this.gpuram1);
             this.groupBox3.Controls.Add(this.video);
-            this.groupBox3.Location = new System.Drawing.Point(173, 136);
+            this.groupBox3.Location = new System.Drawing.Point(12, 162);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(224, 54);
+            this.groupBox3.Size = new System.Drawing.Size(385, 100);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "GPU";
@@ -391,7 +391,7 @@
             // MonitorSize
             // 
             this.MonitorSize.AutoSize = true;
-            this.MonitorSize.Location = new System.Drawing.Point(1, 12);
+            this.MonitorSize.Location = new System.Drawing.Point(11, 52);
             this.MonitorSize.Name = "MonitorSize";
             this.MonitorSize.Size = new System.Drawing.Size(70, 19);
             this.MonitorSize.TabIndex = 23;
@@ -400,7 +400,7 @@
             // gpufanspeed
             // 
             this.gpufanspeed.AutoSize = true;
-            this.gpufanspeed.Location = new System.Drawing.Point(159, 29);
+            this.gpufanspeed.Location = new System.Drawing.Point(169, 71);
             this.gpufanspeed.Name = "gpufanspeed";
             this.gpufanspeed.Size = new System.Drawing.Size(36, 19);
             this.gpufanspeed.TabIndex = 22;
@@ -409,7 +409,7 @@
             // tempgpu
             // 
             this.tempgpu.AutoSize = true;
-            this.tempgpu.Location = new System.Drawing.Point(159, 12);
+            this.tempgpu.Location = new System.Drawing.Point(169, 52);
             this.tempgpu.Name = "tempgpu";
             this.tempgpu.Size = new System.Drawing.Size(36, 19);
             this.tempgpu.TabIndex = 21;
@@ -418,7 +418,7 @@
             // gpuram1
             // 
             this.gpuram1.AutoSize = true;
-            this.gpuram1.Location = new System.Drawing.Point(1, 29);
+            this.gpuram1.Location = new System.Drawing.Point(11, 71);
             this.gpuram1.Name = "gpuram1";
             this.gpuram1.Size = new System.Drawing.Size(64, 19);
             this.gpuram1.TabIndex = 20;
@@ -426,9 +426,9 @@
             // 
             // video
             // 
-            this.video.Location = new System.Drawing.Point(36, -4);
+            this.video.Location = new System.Drawing.Point(6, 19);
             this.video.Name = "video";
-            this.video.Size = new System.Drawing.Size(182, 19);
+            this.video.Size = new System.Drawing.Size(363, 19);
             this.video.TabIndex = 19;
             this.video.Text = "GPU";
             // 
@@ -448,21 +448,21 @@
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Location = new System.Drawing.Point(403, 26);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(319, 361);
+            this.groupBox4.Size = new System.Drawing.Size(319, 347);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Системная информация";
             // 
             // metroTabControl1
             // 
+            this.metroTabControl1.Controls.Add(this.metroTabPage1);
+            this.metroTabControl1.Controls.Add(this.tabPage7);
             this.metroTabControl1.Controls.Add(this.tabPage1);
             this.metroTabControl1.Controls.Add(this.tabPage2);
             this.metroTabControl1.Controls.Add(this.tabPage3);
             this.metroTabControl1.Controls.Add(this.tabPage4);
             this.metroTabControl1.Controls.Add(this.tabPage5);
             this.metroTabControl1.Controls.Add(this.tabPage6);
-            this.metroTabControl1.Controls.Add(this.metroTabPage1);
-            this.metroTabControl1.Controls.Add(this.tabPage7);
             this.metroTabControl1.Location = new System.Drawing.Point(10, 94);
             this.metroTabControl1.Name = "metroTabControl1";
             this.metroTabControl1.SelectedIndex = 7;
@@ -470,6 +470,37 @@
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Green;
             this.metroTabControl1.TabIndex = 23;
             this.metroTabControl1.UseSelectable = true;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.groupBox11);
+            this.tabPage7.Location = new System.Drawing.Point(4, 38);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(290, 204);
+            this.tabPage7.TabIndex = 7;
+            this.tabPage7.Text = "Test";
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.testbox);
+            this.groupBox11.Location = new System.Drawing.Point(7, 4);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(276, 197);
+            this.groupBox11.TabIndex = 22;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Test";
+            // 
+            // testbox
+            // 
+            this.testbox.BackColor = System.Drawing.Color.White;
+            this.testbox.Location = new System.Drawing.Point(0, 19);
+            this.testbox.Multiline = true;
+            this.testbox.Name = "testbox";
+            this.testbox.ReadOnly = true;
+            this.testbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.testbox.ShortcutsEnabled = false;
+            this.testbox.Size = new System.Drawing.Size(276, 172);
+            this.testbox.TabIndex = 17;
             // 
             // tabPage1
             // 
@@ -687,6 +718,28 @@
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage1.VerticalScrollbarSize = 10;
             // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.voltagebox);
+            this.groupBox10.Location = new System.Drawing.Point(7, 4);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(276, 197);
+            this.groupBox10.TabIndex = 21;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Voltage";
+            // 
+            // voltagebox
+            // 
+            this.voltagebox.BackColor = System.Drawing.Color.White;
+            this.voltagebox.Location = new System.Drawing.Point(0, 19);
+            this.voltagebox.Multiline = true;
+            this.voltagebox.Name = "voltagebox";
+            this.voltagebox.ReadOnly = true;
+            this.voltagebox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.voltagebox.ShortcutsEnabled = false;
+            this.voltagebox.Size = new System.Drawing.Size(276, 172);
+            this.voltagebox.TabIndex = 17;
+            // 
             // version
             // 
             this.version.AutoSize = true;
@@ -738,7 +791,7 @@
             this.circularProgressBar3.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.circularProgressBar3.InnerMargin = 2;
             this.circularProgressBar3.InnerWidth = -1;
-            this.circularProgressBar3.Location = new System.Drawing.Point(185, 326);
+            this.circularProgressBar3.Location = new System.Drawing.Point(942, 77);
             this.circularProgressBar3.MarqueeAnimationSpeed = 500;
             this.circularProgressBar3.Name = "circularProgressBar3";
             this.circularProgressBar3.OuterColor = System.Drawing.Color.DodgerBlue;
@@ -774,7 +827,7 @@
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.BackColor = System.Drawing.SystemColors.Menu;
             this.metroLabel3.ForeColor = System.Drawing.Color.Black;
-            this.metroLabel3.Location = new System.Drawing.Point(85, 233);
+            this.metroLabel3.Location = new System.Drawing.Point(829, 58);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(35, 19);
             this.metroLabel3.TabIndex = 19;
@@ -785,8 +838,8 @@
             // tempcpu
             // 
             this.tempcpu.AutoSize = true;
-            this.tempcpu.BackColor = System.Drawing.SystemColors.Menu;
-            this.tempcpu.Location = new System.Drawing.Point(85, 311);
+            this.tempcpu.BackColor = System.Drawing.Color.White;
+            this.tempcpu.Location = new System.Drawing.Point(942, 123);
             this.tempcpu.Name = "tempcpu";
             this.tempcpu.Size = new System.Drawing.Size(42, 19);
             this.tempcpu.TabIndex = 20;
@@ -799,7 +852,7 @@
             // 
             this.core.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.core.BackColor = System.Drawing.SystemColors.Menu;
-            this.core.Location = new System.Drawing.Point(56, 254);
+            this.core.Location = new System.Drawing.Point(796, 77);
             this.core.Name = "core";
             this.core.Size = new System.Drawing.Size(95, 19);
             this.core.TabIndex = 21;
@@ -812,7 +865,7 @@
             // 
             this.cpuclock.AutoSize = true;
             this.cpuclock.BackColor = System.Drawing.SystemColors.Menu;
-            this.cpuclock.Location = new System.Drawing.Point(68, 273);
+            this.cpuclock.Location = new System.Drawing.Point(812, 118);
             this.cpuclock.Name = "cpuclock";
             this.cpuclock.Size = new System.Drawing.Size(72, 19);
             this.cpuclock.TabIndex = 22;
@@ -825,7 +878,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.SystemColors.Menu;
-            this.label7.Location = new System.Drawing.Point(85, 292);
+            this.label7.Location = new System.Drawing.Point(829, 137);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 19);
             this.label7.TabIndex = 23;
@@ -838,7 +891,7 @@
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.BackColor = System.Drawing.SystemColors.Menu;
             this.metroLabel4.ForeColor = System.Drawing.Color.Black;
-            this.metroLabel4.Location = new System.Drawing.Point(293, 233);
+            this.metroLabel4.Location = new System.Drawing.Point(838, 270);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(38, 19);
             this.metroLabel4.TabIndex = 24;
@@ -850,7 +903,7 @@
             // 
             this.ramproc.BackColor = System.Drawing.SystemColors.Menu;
             this.ramproc.ForeColor = System.Drawing.Color.Black;
-            this.ramproc.Location = new System.Drawing.Point(278, 311);
+            this.ramproc.Location = new System.Drawing.Point(827, 312);
             this.ramproc.Name = "ramproc";
             this.ramproc.Size = new System.Drawing.Size(64, 19);
             this.ramproc.TabIndex = 25;
@@ -867,75 +920,25 @@
             // 
             this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
             // 
-            // CpuRPM
+            // Multipl
             // 
-            this.CpuRPM.AutoSize = true;
-            this.CpuRPM.Location = new System.Drawing.Point(12, 368);
-            this.CpuRPM.Name = "CpuRPM";
-            this.CpuRPM.Size = new System.Drawing.Size(37, 19);
-            this.CpuRPM.TabIndex = 27;
-            this.CpuRPM.Text = "RPM";
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.voltagebox);
-            this.groupBox10.Location = new System.Drawing.Point(7, 4);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(276, 197);
-            this.groupBox10.TabIndex = 21;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Voltage";
-            // 
-            // voltagebox
-            // 
-            this.voltagebox.BackColor = System.Drawing.Color.White;
-            this.voltagebox.Location = new System.Drawing.Point(0, 19);
-            this.voltagebox.Multiline = true;
-            this.voltagebox.Name = "voltagebox";
-            this.voltagebox.ReadOnly = true;
-            this.voltagebox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.voltagebox.ShortcutsEnabled = false;
-            this.voltagebox.Size = new System.Drawing.Size(276, 172);
-            this.voltagebox.TabIndex = 17;
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.groupBox11);
-            this.tabPage7.Location = new System.Drawing.Point(4, 38);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(290, 204);
-            this.tabPage7.TabIndex = 7;
-            this.tabPage7.Text = "Test";
-            // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.testbox);
-            this.groupBox11.Location = new System.Drawing.Point(7, 4);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(276, 197);
-            this.groupBox11.TabIndex = 22;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Test";
-            // 
-            // testbox
-            // 
-            this.testbox.BackColor = System.Drawing.Color.White;
-            this.testbox.Location = new System.Drawing.Point(0, 19);
-            this.testbox.Multiline = true;
-            this.testbox.Name = "testbox";
-            this.testbox.ReadOnly = true;
-            this.testbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.testbox.ShortcutsEnabled = false;
-            this.testbox.Size = new System.Drawing.Size(276, 172);
-            this.testbox.TabIndex = 17;
+            this.Multipl.BackColor = System.Drawing.SystemColors.Menu;
+            this.Multipl.Location = new System.Drawing.Point(796, 96);
+            this.Multipl.Name = "Multipl";
+            this.Multipl.Size = new System.Drawing.Size(106, 19);
+            this.Multipl.TabIndex = 26;
+            this.Multipl.Text = "Multipl";
+            this.Multipl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Multipl.UseCustomBackColor = true;
+            this.Multipl.UseCustomForeColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(723, 389);
-            this.Controls.Add(this.CpuRPM);
+            this.ClientSize = new System.Drawing.Size(993, 373);
+            this.Controls.Add(this.Multipl);
             this.Controls.Add(this.ramproc);
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.label7);
@@ -954,7 +957,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Opacity = 0.9D;
+            this.Opacity = 0.95D;
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Purple;
             this.TransparencyKey = System.Drawing.Color.LawnGreen;
@@ -972,6 +975,9 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.metroTabControl1.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -992,9 +998,6 @@
             this.metroTabPage1.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
-            this.tabPage7.ResumeLayout(false);
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1067,13 +1070,13 @@
         private MetroFramework.Controls.MetroLabel L1Cache;
         private MetroFramework.Controls.MetroLabel L3Cache;
         private MetroFramework.Controls.MetroTabPage metroTabPage1;
-        private MetroFramework.Controls.MetroLabel Multipl;
         private MetroFramework.Controls.MetroLabel CpuRPM;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.TextBox voltagebox;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.TextBox testbox;
+        private MetroFramework.Controls.MetroLabel Multipl;
     }
 }
 
