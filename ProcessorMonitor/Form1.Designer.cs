@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pcProcessor = new System.Diagnostics.PerformanceCounter();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pcMemoryAvailable = new System.Diagnostics.PerformanceCounter();
@@ -52,6 +51,8 @@
             this.Memory = new System.Diagnostics.PerformanceCounter();
             this.Hddinfo1 = new System.Diagnostics.PerformanceCounter();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gpushader = new MetroFramework.Controls.MetroLabel();
+            this.gpucore = new MetroFramework.Controls.MetroLabel();
             this.MonitorSize = new MetroFramework.Controls.MetroLabel();
             this.gpufanspeed = new MetroFramework.Controls.MetroLabel();
             this.tempgpu = new MetroFramework.Controls.MetroLabel();
@@ -60,6 +61,9 @@
             this.Hddinfo2 = new System.Diagnostics.PerformanceCounter();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
+            this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.voltagebox = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.testbox = new System.Windows.Forms.TextBox();
@@ -82,9 +86,6 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.Network = new System.Windows.Forms.TextBox();
-            this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.voltagebox = new System.Windows.Forms.TextBox();
             this.version = new MetroFramework.Controls.MetroLabel();
             this.osnumber = new MetroFramework.Controls.MetroLabel();
             this.osviever = new MetroFramework.Controls.MetroLabel();
@@ -102,6 +103,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.Multipl = new MetroFramework.Controls.MetroLabel();
+            this.loading = new System.Windows.Forms.Button();
+            this.gpumemory = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pcProcessor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcMemoryAvailable)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -112,6 +115,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Hddinfo2)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
+            this.metroTabPage1.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -125,18 +130,7 @@
             this.groupBox8.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.metroTabPage1.SuspendLayout();
-            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(342, 106);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(14, 10);
-            this.progressBar1.Step = 1;
-            this.progressBar1.TabIndex = 1;
-            this.progressBar1.Visible = false;
             // 
             // pcProcessor
             // 
@@ -161,7 +155,7 @@
             this.groupBox1.Controls.Add(this.metroLabel2);
             this.groupBox1.Controls.Add(this.lblMemoryAvailable);
             this.groupBox1.Controls.Add(this.metroLabel1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 268);
+            this.groupBox1.Location = new System.Drawing.Point(12, 312);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(155, 54);
             this.groupBox1.TabIndex = 3;
@@ -214,7 +208,6 @@
             this.groupBox2.Controls.Add(this.Socket);
             this.groupBox2.Controls.Add(this.cpusocket);
             this.groupBox2.Controls.Add(this.lblProcessor);
-            this.groupBox2.Controls.Add(this.progressBar1);
             this.groupBox2.Location = new System.Drawing.Point(12, 26);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(385, 129);
@@ -235,17 +228,17 @@
             // 
             this.L3Cache.AutoSize = true;
             this.L3Cache.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.L3Cache.Location = new System.Drawing.Point(320, 107);
+            this.L3Cache.Location = new System.Drawing.Point(318, 111);
             this.L3Cache.Name = "L3Cache";
-            this.L3Cache.Size = new System.Drawing.Size(48, 15);
+            this.L3Cache.Size = new System.Drawing.Size(51, 15);
             this.L3Cache.TabIndex = 25;
-            this.L3Cache.Text = "L3Cache";
+            this.L3Cache.Text = "L3 Cache";
             // 
             // L2Cache
             // 
             this.L2Cache.AutoSize = true;
             this.L2Cache.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.L2Cache.Location = new System.Drawing.Point(320, 92);
+            this.L2Cache.Location = new System.Drawing.Point(318, 96);
             this.L2Cache.Name = "L2Cache";
             this.L2Cache.Size = new System.Drawing.Size(51, 15);
             this.L2Cache.TabIndex = 24;
@@ -255,7 +248,7 @@
             // 
             this.L1Cache.AutoSize = true;
             this.L1Cache.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.L1Cache.Location = new System.Drawing.Point(320, 77);
+            this.L1Cache.Location = new System.Drawing.Point(318, 81);
             this.L1Cache.Name = "L1Cache";
             this.L1Cache.Size = new System.Drawing.Size(49, 15);
             this.L1Cache.TabIndex = 23;
@@ -376,6 +369,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.gpumemory);
+            this.groupBox3.Controls.Add(this.gpushader);
+            this.groupBox3.Controls.Add(this.gpucore);
             this.groupBox3.Controls.Add(this.MonitorSize);
             this.groupBox3.Controls.Add(this.gpufanspeed);
             this.groupBox3.Controls.Add(this.tempgpu);
@@ -383,15 +379,33 @@
             this.groupBox3.Controls.Add(this.video);
             this.groupBox3.Location = new System.Drawing.Point(12, 162);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(385, 100);
+            this.groupBox3.Size = new System.Drawing.Size(385, 144);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "GPU";
             // 
+            // gpushader
+            // 
+            this.gpushader.AutoSize = true;
+            this.gpushader.Location = new System.Drawing.Point(11, 114);
+            this.gpushader.Name = "gpushader";
+            this.gpushader.Size = new System.Drawing.Size(71, 19);
+            this.gpushader.TabIndex = 25;
+            this.gpushader.Text = "gpushader";
+            // 
+            // gpucore
+            // 
+            this.gpucore.AutoSize = true;
+            this.gpucore.Location = new System.Drawing.Point(11, 76);
+            this.gpucore.Name = "gpucore";
+            this.gpucore.Size = new System.Drawing.Size(58, 19);
+            this.gpucore.TabIndex = 24;
+            this.gpucore.Text = "gpucore";
+            // 
             // MonitorSize
             // 
             this.MonitorSize.AutoSize = true;
-            this.MonitorSize.Location = new System.Drawing.Point(11, 52);
+            this.MonitorSize.Location = new System.Drawing.Point(11, 38);
             this.MonitorSize.Name = "MonitorSize";
             this.MonitorSize.Size = new System.Drawing.Size(70, 19);
             this.MonitorSize.TabIndex = 23;
@@ -400,7 +414,7 @@
             // gpufanspeed
             // 
             this.gpufanspeed.AutoSize = true;
-            this.gpufanspeed.Location = new System.Drawing.Point(169, 71);
+            this.gpufanspeed.Location = new System.Drawing.Point(318, 111);
             this.gpufanspeed.Name = "gpufanspeed";
             this.gpufanspeed.Size = new System.Drawing.Size(36, 19);
             this.gpufanspeed.TabIndex = 22;
@@ -409,7 +423,7 @@
             // tempgpu
             // 
             this.tempgpu.AutoSize = true;
-            this.tempgpu.Location = new System.Drawing.Point(169, 52);
+            this.tempgpu.Location = new System.Drawing.Point(318, 92);
             this.tempgpu.Name = "tempgpu";
             this.tempgpu.Size = new System.Drawing.Size(36, 19);
             this.tempgpu.TabIndex = 21;
@@ -418,7 +432,7 @@
             // gpuram1
             // 
             this.gpuram1.AutoSize = true;
-            this.gpuram1.Location = new System.Drawing.Point(11, 71);
+            this.gpuram1.Location = new System.Drawing.Point(11, 57);
             this.gpuram1.Name = "gpuram1";
             this.gpuram1.Size = new System.Drawing.Size(64, 19);
             this.gpuram1.TabIndex = 20;
@@ -426,7 +440,7 @@
             // 
             // video
             // 
-            this.video.Location = new System.Drawing.Point(6, 19);
+            this.video.Location = new System.Drawing.Point(11, 19);
             this.video.Name = "video";
             this.video.Size = new System.Drawing.Size(363, 19);
             this.video.TabIndex = 19;
@@ -465,11 +479,52 @@
             this.metroTabControl1.Controls.Add(this.tabPage6);
             this.metroTabControl1.Location = new System.Drawing.Point(10, 94);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 7;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(298, 246);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Green;
             this.metroTabControl1.TabIndex = 23;
             this.metroTabControl1.UseSelectable = true;
+            // 
+            // metroTabPage1
+            // 
+            this.metroTabPage1.AutoScroll = true;
+            this.metroTabPage1.Controls.Add(this.groupBox10);
+            this.metroTabPage1.HorizontalScrollbar = true;
+            this.metroTabPage1.HorizontalScrollbarBarColor = true;
+            this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroTabPage1.HorizontalScrollbarSize = 10;
+            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
+            this.metroTabPage1.Name = "metroTabPage1";
+            this.metroTabPage1.Size = new System.Drawing.Size(290, 204);
+            this.metroTabPage1.TabIndex = 6;
+            this.metroTabPage1.Text = "Напряжение";
+            this.metroTabPage1.VerticalScrollbar = true;
+            this.metroTabPage1.VerticalScrollbarBarColor = true;
+            this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
+            this.metroTabPage1.VerticalScrollbarSize = 10;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.voltagebox);
+            this.groupBox10.Location = new System.Drawing.Point(7, 4);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(276, 197);
+            this.groupBox10.TabIndex = 21;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Voltage";
+            // 
+            // voltagebox
+            // 
+            this.voltagebox.BackColor = System.Drawing.Color.White;
+            this.voltagebox.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.voltagebox.Location = new System.Drawing.Point(0, 19);
+            this.voltagebox.Multiline = true;
+            this.voltagebox.Name = "voltagebox";
+            this.voltagebox.ReadOnly = true;
+            this.voltagebox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.voltagebox.ShortcutsEnabled = false;
+            this.voltagebox.Size = new System.Drawing.Size(276, 172);
+            this.voltagebox.TabIndex = 17;
             // 
             // tabPage7
             // 
@@ -703,43 +758,6 @@
             this.Network.Size = new System.Drawing.Size(276, 172);
             this.Network.TabIndex = 17;
             // 
-            // metroTabPage1
-            // 
-            this.metroTabPage1.Controls.Add(this.groupBox10);
-            this.metroTabPage1.HorizontalScrollbarBarColor = true;
-            this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.HorizontalScrollbarSize = 10;
-            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(290, 204);
-            this.metroTabPage1.TabIndex = 6;
-            this.metroTabPage1.Text = "Напряжение";
-            this.metroTabPage1.VerticalScrollbarBarColor = true;
-            this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.VerticalScrollbarSize = 10;
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.voltagebox);
-            this.groupBox10.Location = new System.Drawing.Point(7, 4);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(276, 197);
-            this.groupBox10.TabIndex = 21;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Voltage";
-            // 
-            // voltagebox
-            // 
-            this.voltagebox.BackColor = System.Drawing.Color.White;
-            this.voltagebox.Location = new System.Drawing.Point(0, 19);
-            this.voltagebox.Multiline = true;
-            this.voltagebox.Name = "voltagebox";
-            this.voltagebox.ReadOnly = true;
-            this.voltagebox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.voltagebox.ShortcutsEnabled = false;
-            this.voltagebox.Size = new System.Drawing.Size(276, 172);
-            this.voltagebox.TabIndex = 17;
-            // 
             // version
             // 
             this.version.AutoSize = true;
@@ -932,12 +950,33 @@
             this.Multipl.UseCustomBackColor = true;
             this.Multipl.UseCustomForeColor = true;
             // 
+            // loading
+            // 
+            this.loading.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.loading.ForeColor = System.Drawing.Color.DarkGreen;
+            this.loading.Location = new System.Drawing.Point(-10, 5);
+            this.loading.Name = "loading";
+            this.loading.Size = new System.Drawing.Size(91, 19);
+            this.loading.TabIndex = 27;
+            this.loading.Text = "Loading";
+            this.loading.UseVisualStyleBackColor = true;
+            // 
+            // gpumemory
+            // 
+            this.gpumemory.AutoSize = true;
+            this.gpumemory.Location = new System.Drawing.Point(11, 95);
+            this.gpumemory.Name = "gpumemory";
+            this.gpumemory.Size = new System.Drawing.Size(83, 19);
+            this.gpumemory.TabIndex = 26;
+            this.gpumemory.Text = "gpumemory";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(993, 373);
+            this.Controls.Add(this.loading);
             this.Controls.Add(this.Multipl);
             this.Controls.Add(this.ramproc);
             this.Controls.Add(this.metroLabel4);
@@ -947,13 +986,13 @@
             this.Controls.Add(this.tempcpu);
             this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.time);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.circularProgressBar3);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.circularProgressBar2);
             this.Controls.Add(this.circularProgressBar1);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.circularProgressBar2);
             this.ForeColor = System.Drawing.Color.Black;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -975,6 +1014,9 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.metroTabControl1.ResumeLayout(false);
+            this.metroTabPage1.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
@@ -995,16 +1037,12 @@
             this.tabPage6.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            this.metroTabPage1.ResumeLayout(false);
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private CircularProgressBar.CircularProgressBar circularProgressBar1;
@@ -1077,6 +1115,10 @@
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.TextBox testbox;
         private MetroFramework.Controls.MetroLabel Multipl;
+        private MetroFramework.Controls.MetroLabel gpucore;
+        private MetroFramework.Controls.MetroLabel gpushader;
+        private System.Windows.Forms.Button loading;
+        private MetroFramework.Controls.MetroLabel gpumemory;
     }
 }
 
