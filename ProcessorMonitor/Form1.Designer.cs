@@ -51,13 +51,14 @@
             this.Memory = new System.Diagnostics.PerformanceCounter();
             this.Hddinfo1 = new System.Diagnostics.PerformanceCounter();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gpumemory = new MetroFramework.Controls.MetroLabel();
             this.gpushader = new MetroFramework.Controls.MetroLabel();
             this.gpucore = new MetroFramework.Controls.MetroLabel();
             this.MonitorSize = new MetroFramework.Controls.MetroLabel();
             this.gpufanspeed = new MetroFramework.Controls.MetroLabel();
             this.tempgpu = new MetroFramework.Controls.MetroLabel();
-            this.gpuram1 = new MetroFramework.Controls.MetroLabel();
-            this.video = new MetroFramework.Controls.MetroLabel();
+            this.gpuramsize = new MetroFramework.Controls.MetroLabel();
+            this.gpuname = new MetroFramework.Controls.MetroLabel();
             this.Hddinfo2 = new System.Diagnostics.PerformanceCounter();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
@@ -104,7 +105,6 @@
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.Multipl = new MetroFramework.Controls.MetroLabel();
             this.loading = new System.Windows.Forms.Button();
-            this.gpumemory = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pcProcessor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcMemoryAvailable)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -375,14 +375,23 @@
             this.groupBox3.Controls.Add(this.MonitorSize);
             this.groupBox3.Controls.Add(this.gpufanspeed);
             this.groupBox3.Controls.Add(this.tempgpu);
-            this.groupBox3.Controls.Add(this.gpuram1);
-            this.groupBox3.Controls.Add(this.video);
+            this.groupBox3.Controls.Add(this.gpuramsize);
+            this.groupBox3.Controls.Add(this.gpuname);
             this.groupBox3.Location = new System.Drawing.Point(12, 162);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(385, 144);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "GPU";
+            // 
+            // gpumemory
+            // 
+            this.gpumemory.AutoSize = true;
+            this.gpumemory.Location = new System.Drawing.Point(11, 95);
+            this.gpumemory.Name = "gpumemory";
+            this.gpumemory.Size = new System.Drawing.Size(83, 19);
+            this.gpumemory.TabIndex = 26;
+            this.gpumemory.Text = "gpumemory";
             // 
             // gpushader
             // 
@@ -429,22 +438,22 @@
             this.tempgpu.TabIndex = 21;
             this.tempgpu.Text = "NaN";
             // 
-            // gpuram1
+            // gpuramsize
             // 
-            this.gpuram1.AutoSize = true;
-            this.gpuram1.Location = new System.Drawing.Point(11, 57);
-            this.gpuram1.Name = "gpuram1";
-            this.gpuram1.Size = new System.Drawing.Size(64, 19);
-            this.gpuram1.TabIndex = 20;
-            this.gpuram1.Text = "GPURAM";
+            this.gpuramsize.AutoSize = true;
+            this.gpuramsize.Location = new System.Drawing.Point(11, 57);
+            this.gpuramsize.Name = "gpuramsize";
+            this.gpuramsize.Size = new System.Drawing.Size(64, 19);
+            this.gpuramsize.TabIndex = 20;
+            this.gpuramsize.Text = "GPURAM";
             // 
-            // video
+            // gpuname
             // 
-            this.video.Location = new System.Drawing.Point(11, 19);
-            this.video.Name = "video";
-            this.video.Size = new System.Drawing.Size(363, 19);
-            this.video.TabIndex = 19;
-            this.video.Text = "GPU";
+            this.gpuname.Location = new System.Drawing.Point(11, 19);
+            this.gpuname.Name = "gpuname";
+            this.gpuname.Size = new System.Drawing.Size(363, 19);
+            this.gpuname.TabIndex = 19;
+            this.gpuname.Text = "GPU";
             // 
             // Hddinfo2
             // 
@@ -956,19 +965,10 @@
             this.loading.ForeColor = System.Drawing.Color.DarkGreen;
             this.loading.Location = new System.Drawing.Point(-10, 5);
             this.loading.Name = "loading";
-            this.loading.Size = new System.Drawing.Size(91, 19);
+            this.loading.Size = new System.Drawing.Size(339, 53);
             this.loading.TabIndex = 27;
             this.loading.Text = "Loading";
             this.loading.UseVisualStyleBackColor = true;
-            // 
-            // gpumemory
-            // 
-            this.gpumemory.AutoSize = true;
-            this.gpumemory.Location = new System.Drawing.Point(11, 95);
-            this.gpumemory.Name = "gpumemory";
-            this.gpumemory.Size = new System.Drawing.Size(83, 19);
-            this.gpumemory.TabIndex = 26;
-            this.gpumemory.Text = "gpumemory";
             // 
             // Form1
             // 
@@ -1067,8 +1067,8 @@
         private MetroFramework.Controls.MetroLabel lblMemoryAvailable;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel tempgpu;
-        private MetroFramework.Controls.MetroLabel gpuram1;
-        private MetroFramework.Controls.MetroLabel video;
+        private MetroFramework.Controls.MetroLabel gpuramsize;
+        private MetroFramework.Controls.MetroLabel gpuname;
         private MetroFramework.Controls.MetroLabel gpufanspeed;
         private MetroFramework.Controls.MetroLabel MonitorSize;
         private MetroFramework.Controls.MetroLabel time;

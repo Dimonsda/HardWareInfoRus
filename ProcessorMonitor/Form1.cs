@@ -8,20 +8,21 @@ using System.Management;
 using System.Threading;
 using OpenHardwareMonitor;
 using OpenHardwareMonitor.Hardware;
-
+using SysInfo;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
+
 
 namespace ProcessorMonitor
 {
     public partial class Form1 : MetroForm
     {
-
+        
         public delegate void MyDelegate();
 
         Computer c = new Computer();
-
+        
         #region Hardware
         public void hddinfo()
         {
@@ -152,155 +153,168 @@ namespace ProcessorMonitor
                 }
             }
         }
-
-        public void Test()
+        public void Hardware()
         {
-            List<double> cpulist = new List<double>();
-            List<string> gpulist = new List<string>();
-            c.Open();
-            c.HDDEnabled = true;
-            c.FanControllerEnabled = true;
-            c.RAMEnabled = true;
-            c.GPUEnabled = true;
-            c.MainboardEnabled = true;
-            c.CPUEnabled = true;
-
-            foreach (var hardware in c.Hardware)
+            try
             {
-                switch (hardware.HardwareType)
+
+                List<double> cpulist = new List<double>();
+                List<string> gpuprop = new List<string>();
+                List<string> gpulist = new List<string>();
+
+
+                c.Open();
+                c.HDDEnabled = true;
+                c.FanControllerEnabled = true;
+                c.RAMEnabled = true;
+                c.GPUEnabled = true;
+                c.MainboardEnabled = true;
+                c.CPUEnabled = true;
+
+
+                foreach (var hardware in c.Hardware)
                 {
+                    switch (hardware.HardwareType)
+                    {
 
-                    case HardwareType.CPU:
-                        hardware.Update();
-                        foreach (var sensors in hardware.Sensors)
-                        {
-                            if (sensors.SensorType == SensorType.Temperature)
-                            {
-                                tempcpu.Text = (sensors.Value.GetValueOrDefault() + "°C");
-                                circularProgressBar3.Value = (int)sensors.Value;
-                            }
-                        }
-                        foreach (var sensors in hardware.Sensors)
-                        {
-                            if (sensors.SensorType == SensorType.Clock)
-                            {
-                                cpulist.Add(Convert.ToDouble(sensors.Value.GetValueOrDefault().ToString()));
-                            }
-                        }
-                        try
-                        {
-                            cpuclock.Text = Math.Truncate(cpulist[0]).ToString() + " MHz";
-                            var clock = Math.Round(cpulist[0]) / Math.Round(cpulist[4]);
-                            Multipl.Text = "Множитель: " + clock;
-                        }
-                        catch { }
-                        break;
-
-                    case HardwareType.GpuNvidia:
-                        hardware.Update();
-                        if (hardware.HardwareType == HardwareType.GpuNvidia)
-                        {
+                        case HardwareType.CPU:
                             hardware.Update();
+                            //testbox.Clear();
+                            
                             foreach (var sensors in hardware.Sensors)
                             {
-                                if (sensors.SensorType == SensorType.Fan)
+                                
+                                if (sensors.SensorType == SensorType.Temperature)
                                 {
-                                    gpufanspeed.Text = (sensors.Value.GetValueOrDefault() + "RPM");
+                                    tempcpu.Text = (sensors.Value.GetValueOrDefault() + "°C");
+                                    circularProgressBar3.Value = (int)sensors.Value;
                                 }
+                            }
+                            foreach (var sensors in hardware.Sensors)
+                            {
                                 if (sensors.SensorType == SensorType.Clock)
                                 {
-                                    gpulist.Add(sensors.Name + ": " + Math.Round(Convert.ToDouble(sensors.Value.GetValueOrDefault())));
-                                    testbox.Clear();
-                                    testbox.AppendText(gpulist[0]);
-                                    
-                                    try {
-                                        gpucore.Text = (gpulist[0] + " MHz");
-                                        gpushader.Text = (gpulist[2] + " MHz");
-                                        gpumemory.Text = (gpulist[1] + " MHz");
-                                    }
-                                    catch { }
-
-                                }
-
-                            }
-                        }
-                        foreach (var sensors in hardware.Sensors)
-                        {
-                            if (sensors.SensorType == SensorType.Temperature)
-                            {
-                                tempgpu.Text = (sensors.Value.GetValueOrDefault() + "°C");
-                                if (sensors.Max.GetValueOrDefault() > 60)
-                                {
-                                    circularProgressBar3.ProgressColor = Color.Red;
+                                    cpulist.Add(Convert.ToDouble(sensors.Value.GetValueOrDefault().ToString()));
                                 }
                             }
-                        }
-                        break;
-
-                    case HardwareType.GpuAti:
-                        testbox.AppendText(hardware.Name + "\n");
-                        hardware.Update();
-                        foreach (var sensors in hardware.Sensors)
-                        {
-                            if (sensors.SensorType == SensorType.Temperature)
+                            try
                             {
-                                tempgpu.Text = (sensors.Value.GetValueOrDefault() + "°C");
-                                if (sensors.Max.GetValueOrDefault() > 60)
-                                {
-                                    circularProgressBar3.ProgressColor = Color.Red;
-                                }
+                                cpuclock.Text = Math.Truncate(cpulist[0]).ToString() + " MHz";
+                                var rnclock = cpulist[0] / (cpulist[cpulist.Count - 1]);
+                                var clock = Math.Round(rnclock);
+                                Multipl.Text = "Множитель: " + clock;
                             }
-                        }
-                        break;
-                    case HardwareType.HDD:
-                        break;
-                    case HardwareType.Mainboard:
+                            catch { }
+                            break;
 
-                        foreach (var subhardware in hardware.SubHardware)
-                        {
-                            // This will be in the SuperIO
-                            subhardware.Update();
-                            if (subhardware.Sensors.Length > 0) // Index out of bounds check
+                        case HardwareType.GpuNvidia:
+                            hardware.Update();
+                            if (hardware.HardwareType == HardwareType.GpuNvidia)
                             {
-                                foreach (var sensor in subhardware.Sensors)
+                                hardware.Update();
+                                //gpuname.Text = hardware.Name;
+                                foreach (var sensors in hardware.Sensors)
                                 {
-                                    // Look for the main fan sensor
-                                    if (sensor.SensorType == SensorType.Fan)
+                                    if (sensors.SensorType == SensorType.Fan)
                                     {
-                                        CpuRPM.Text = ("CPU Fan Speed: " +  Math.Round(Convert.ToDouble(sensor.Value.GetValueOrDefault())) + " RPM");
+                                        gpufanspeed.Text = (sensors.Value.GetValueOrDefault() + "RPM");
+                                    }
+                                    if (sensors.SensorType == SensorType.Clock)
+                                    {
+                                        gpuprop.Add(sensors.Name + ": " + Math.Round(Convert.ToDouble(sensors.Value.GetValueOrDefault())));
+                                        try
+                                        {
+                                            //testbox.Text = string.Join(" + ", hardware.Name);
+                                            gpucore.Text = (gpuprop[0] + " MHz");
+                                            gpushader.Text = (gpuprop[2] + " MHz");
+                                            gpumemory.Text = (gpuprop[1] + " MHz");
+                                        }
+                                        catch { }
+
+                                    }
+
+                                }
+                            }
+                            foreach (var sensors in hardware.Sensors)
+                            {
+                                if (sensors.SensorType == SensorType.Temperature)
+                                {
+                                    tempgpu.Text = (sensors.Value.GetValueOrDefault() + "°C");
+                                    if (sensors.Max.GetValueOrDefault() > 60)
+                                    {
+                                        circularProgressBar3.ProgressColor = Color.Red;
                                     }
                                 }
                             }
-                        }
-                        break;
-                    case HardwareType.RAM:
-                        break;
+                            break;
+
+                        case HardwareType.GpuAti:
+                            hardware.Update();
+
+                            if (hardware.HardwareType == HardwareType.GpuAti)
+                            {
+                                hardware.Update();
+                                gpulist.Add(hardware.Name);
+                                foreach (var sensors in hardware.Sensors)
+                                {
+                                    if (sensors.SensorType == SensorType.Fan)
+                                    {
+                                        gpufanspeed.Text = (sensors.Value.GetValueOrDefault() + "RPM");
+                                    }
+                                    if (sensors.SensorType == SensorType.Clock)
+                                    {
+                                        gpuprop.Add(sensors.Name + ": " + Math.Round(Convert.ToDouble(sensors.Value.GetValueOrDefault())));
+
+                                        try
+                                        {
+                                            gpucore.Text = (gpuprop[0] + " MHz");
+                                            gpushader.Text = (gpuprop[2] + " MHz");
+                                            gpumemory.Text = (gpuprop[1] + " MHz");
+                                            gpuname.Text = (string.Join(" + ", gpulist));
+                                        }
+                                        catch { }
+                                    }
+                                }
+                            }
+                            break;
+                        case HardwareType.HDD:
+                            break;
+                        case HardwareType.Mainboard:
+
+                            foreach (var subhardware in hardware.SubHardware)
+                            {
+                                // This will be in the SuperIO
+                                subhardware.Update();
+                                if (subhardware.Sensors.Length > 0) // Index out of bounds check
+                                {
+                                    foreach (var sensor in subhardware.Sensors)
+                                    {
+                                        // Look for the main fan sensor
+                                        if (sensor.SensorType == SensorType.Fan)
+                                        {
+                                            CpuRPM.Text = ("CPU Fan Speed: " + Math.Round(Convert.ToDouble(sensor.Value.GetValueOrDefault())) + " RPM");
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        case HardwareType.RAM:
+                            break;
+                    }
                 }
             }
+            catch { }
         }
 
-        public void videocard()
+
+        public void readclass()
         {
-            ManagementObjectSearcher searcher =
-                    new ManagementObjectSearcher("root\\CIMV2",
-                    "SELECT * FROM Win32_DisplayConfiguration");
-
-            foreach (ManagementObject queryObj in searcher.Get())
-            {
-                video.Text = string.Format("{0}", queryObj["Description"]);
-            }
+            SysInfo.SystemInfo info = new SystemInfo();
+            gpuname.Text = info.GPUname;
+            gpuramsize.Text = info.GPUSize;
         }
-        public void videoRAM()
-        {
-            ManagementObjectSearcher searcher =
-                    new ManagementObjectSearcher("root\\CIMV2",
-                    "SELECT * FROM Win32_VideoController");
-
-            foreach (ManagementObject queryObj in searcher.Get())
-            {
-                gpuram1.Text = string.Format("Объём: {0}", Math.Truncate(Convert.ToDouble(queryObj["AdapterRAM"]) / 1024 / 1024)) + "MB";
-            }
-        }
+                
+        
         public void ports()
         {
 
@@ -356,10 +370,8 @@ namespace ProcessorMonitor
             //Разрешение
             MonitorSize.Text = "Разрешение: " + SystemInformation.PrimaryMonitorSize.Width.ToString() + " x " + SystemInformation.PrimaryMonitorSize.Height.ToString();
 
-
             //HDD
             HDD.Text = "Свободно " + (Hddinfo1.NextValue()).ToString("00.##") + "%";
-
 
             core.Text = "Число ядер: " + Convert.ToString(Environment.ProcessorCount);
             osnumber.Text = "Ядро: " + Convert.ToString(Environment.OSVersion);
@@ -373,26 +385,23 @@ namespace ProcessorMonitor
             //Потоки
             backgroundWorker1.RunWorkerAsync();
             backgroundWorker2.RunWorkerAsync();
-            
-            
+
+
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-
-
-            BeginInvoke(new MyDelegate(Test));
+            BeginInvoke(new MyDelegate(Hardware));
             BeginInvoke(new MyDelegate(Voltage));
             backgroundWorker1.CancelAsync();
         }
 
         private void backgroundWorker2_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            BeginInvoke(new MyDelegate(videocard));
+            BeginInvoke(new MyDelegate(readclass));
             BeginInvoke(new MyDelegate(hddinfo));
             BeginInvoke(new MyDelegate(cache));
             BeginInvoke(new MyDelegate(proc));
-            BeginInvoke(new MyDelegate(videoRAM));
             BeginInvoke(new MyDelegate(ramspeed));
             BeginInvoke(new MyDelegate(wininfo));
             BeginInvoke(new MyDelegate(raminfo2));
@@ -403,7 +412,7 @@ namespace ProcessorMonitor
             BeginInvoke(new MyDelegate(network));
 
             backgroundWorker2.CancelAsync();
-            
+
         }
 
 
@@ -429,7 +438,7 @@ namespace ProcessorMonitor
         private void timer2_Tick(object sender, EventArgs e)
         {
             Voltage();
-            Test();
+            Hardware();
         }
     }
 }
