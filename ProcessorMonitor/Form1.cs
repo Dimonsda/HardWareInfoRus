@@ -310,72 +310,33 @@ namespace ProcessorMonitor
         public void readclass()
         {
             SysInfo.SystemInfo info = new SystemInfo();
+            info.ports();
+            info.videocard();
+            info.motherboard();
+            info.videoRAM();
+            info.network();
+            info.wininfo();
+
+            label5.Text = info.OsName;
+
             gpuname.Text = info.GPUname;
             gpuramsize.Text = info.GPUSize;
+
+            
+            Ports.AppendText(string.Join("-----------------------" + Environment.NewLine,info.portss));
+            Motherboard.Text = (info.Motherboard + Environment.NewLine + info.MotherboardSerial);
+
+            Network.AppendText(string.Join(Environment.NewLine + "-----------------------" + Environment.NewLine, info.networks));
         }
                 
         
-        public void ports()
-        {
-
-            ManagementObjectSearcher searcher =
-                    new ManagementObjectSearcher("root\\CIMV2",
-                    "SELECT * FROM Win32_PortConnector");
-
-            foreach (ManagementObject queryObj in searcher.Get())
-            {
-                Ports.AppendText(string.Format("Порт: {0}", queryObj["InternalReferenceDesignator"]) + Environment.NewLine);
-                Ports.AppendText("-----------------------------------------" + Environment.NewLine);
-            }
-
-        }
-        public void motherboard()
-        {
-            ManagementObjectSearcher searcher =
-                    new ManagementObjectSearcher("root\\CIMV2",
-                    "SELECT * FROM Win32_BaseBoard");
-
-            foreach (ManagementObject queryObj in searcher.Get())
-            {
-                Motherboard.AppendText(string.Format("{0} {1} {2}", queryObj["Manufacturer"], queryObj["Product"], queryObj["Version"]) + Environment.NewLine);
-                Motherboard.AppendText("-----------------------------------------" + Environment.NewLine);
-                Motherboard.AppendText(string.Format("Серийный номер: {0}", queryObj["SerialNumber"]) + Environment.NewLine);
-            }
-
-        }
-        public void network()
-        {
-            ManagementObjectSearcher searcher =
-                    new ManagementObjectSearcher("root\\CIMV2",
-                    "SELECT * FROM Win32_NetworkAdapter");
-
-            foreach (ManagementObject queryObj in searcher.Get())
-            {
-                Network.AppendText(string.Format("{0} ", queryObj["Name"]) + Environment.NewLine);
-                Network.AppendText(string.Format("Текущая скорость: {0} ", Math.Truncate(Convert.ToDouble(queryObj["Speed"]) / 1024 / 1024)) + "MB/s" + Environment.NewLine);
-                Network.AppendText("-----------------------------------------" + Environment.NewLine);
-            }
-
-        }
+        
+       
 
         public void wininfo()
         {
-            var TotalRam = new Microsoft.VisualBasic.Devices.ComputerInfo().TotalPhysicalMemory;
-            temper.Text = ((TotalRam / 1024 / 1024) + 1).ToString();
-
-            //Название ОС
-            osviever.Text = "ОС: " + new Microsoft.VisualBasic.Devices.ComputerInfo().OSFullName;
-            label5.Text = new Microsoft.VisualBasic.Devices.Computer().Name;
-
-            //Разрешение
-            MonitorSize.Text = "Разрешение: " + SystemInformation.PrimaryMonitorSize.Width.ToString() + " x " + SystemInformation.PrimaryMonitorSize.Height.ToString();
-
             //HDD
             HDD.Text = "Свободно " + (Hddinfo1.NextValue()).ToString("00.##") + "%";
-
-            core.Text = "Число ядер: " + Convert.ToString(Environment.ProcessorCount);
-            osnumber.Text = "Ядро: " + Convert.ToString(Environment.OSVersion);
-            version.Text = "Версия: " + Convert.ToString(Environment.Version);
         }
         #endregion
 
@@ -407,9 +368,6 @@ namespace ProcessorMonitor
             BeginInvoke(new MyDelegate(raminfo2));
             BeginInvoke(new MyDelegate(raminfo));
             BeginInvoke(new MyDelegate(usbinfo));
-            BeginInvoke(new MyDelegate(ports));
-            BeginInvoke(new MyDelegate(motherboard));
-            BeginInvoke(new MyDelegate(network));
 
             backgroundWorker2.CancelAsync();
 
