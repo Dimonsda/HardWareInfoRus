@@ -33,7 +33,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pcMemoryAvailable = new System.Diagnostics.PerformanceCounter();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.temper = new MetroFramework.Controls.MetroLabel();
+            this.allram = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.lblMemoryAvailable = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
@@ -51,13 +51,14 @@
             this.Memory = new System.Diagnostics.PerformanceCounter();
             this.Hddinfo1 = new System.Diagnostics.PerformanceCounter();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gpumemory = new MetroFramework.Controls.MetroLabel();
             this.gpushader = new MetroFramework.Controls.MetroLabel();
             this.gpucore = new MetroFramework.Controls.MetroLabel();
             this.MonitorSize = new MetroFramework.Controls.MetroLabel();
             this.gpufanspeed = new MetroFramework.Controls.MetroLabel();
             this.tempgpu = new MetroFramework.Controls.MetroLabel();
-            this.gpuram1 = new MetroFramework.Controls.MetroLabel();
-            this.video = new MetroFramework.Controls.MetroLabel();
+            this.gpuramsize = new MetroFramework.Controls.MetroLabel();
+            this.gpuname = new MetroFramework.Controls.MetroLabel();
             this.Hddinfo2 = new System.Diagnostics.PerformanceCounter();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
@@ -69,7 +70,7 @@
             this.testbox = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.label8 = new MetroFramework.Controls.MetroLabel();
+            this.HDDspeed = new MetroFramework.Controls.MetroLabel();
             this.HDD = new MetroFramework.Controls.MetroLabel();
             this.hddlist = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -88,23 +89,22 @@
             this.Network = new System.Windows.Forms.TextBox();
             this.version = new MetroFramework.Controls.MetroLabel();
             this.osnumber = new MetroFramework.Controls.MetroLabel();
-            this.osviever = new MetroFramework.Controls.MetroLabel();
-            this.label5 = new MetroFramework.Controls.MetroLabel();
+            this.osname = new MetroFramework.Controls.MetroLabel();
+            this.PCname = new MetroFramework.Controls.MetroLabel();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.circularProgressBar3 = new CircularProgressBar.CircularProgressBar();
             this.time = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.tempcpu = new MetroFramework.Controls.MetroLabel();
-            this.core = new MetroFramework.Controls.MetroLabel();
+            this.Corecount = new MetroFramework.Controls.MetroLabel();
             this.cpuclock = new MetroFramework.Controls.MetroLabel();
-            this.label7 = new MetroFramework.Controls.MetroLabel();
+            this.cpuusage = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.ramproc = new MetroFramework.Controls.MetroLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.Multipl = new MetroFramework.Controls.MetroLabel();
             this.loading = new System.Windows.Forms.Button();
-            this.gpumemory = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pcProcessor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcMemoryAvailable)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -151,25 +151,26 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.temper);
+            this.groupBox1.Controls.Add(this.allram);
             this.groupBox1.Controls.Add(this.metroLabel2);
             this.groupBox1.Controls.Add(this.lblMemoryAvailable);
             this.groupBox1.Controls.Add(this.metroLabel1);
+            this.groupBox1.Controls.Add(this.ramspeedl);
             this.groupBox1.Location = new System.Drawing.Point(12, 312);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(155, 54);
+            this.groupBox1.Size = new System.Drawing.Size(385, 54);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Оперативная память (MB)";
             // 
-            // temper
+            // allram
             // 
-            this.temper.AutoSize = true;
-            this.temper.Location = new System.Drawing.Point(101, 29);
-            this.temper.Name = "temper";
-            this.temper.Size = new System.Drawing.Size(15, 19);
-            this.temper.TabIndex = 16;
-            this.temper.Text = "-";
+            this.allram.AutoSize = true;
+            this.allram.Location = new System.Drawing.Point(101, 29);
+            this.allram.Name = "allram";
+            this.allram.Size = new System.Drawing.Size(15, 19);
+            this.allram.TabIndex = 16;
+            this.allram.Text = "-";
             // 
             // metroLabel2
             // 
@@ -204,7 +205,6 @@
             this.groupBox2.Controls.Add(this.L3Cache);
             this.groupBox2.Controls.Add(this.L2Cache);
             this.groupBox2.Controls.Add(this.L1Cache);
-            this.groupBox2.Controls.Add(this.ramspeedl);
             this.groupBox2.Controls.Add(this.Socket);
             this.groupBox2.Controls.Add(this.cpusocket);
             this.groupBox2.Controls.Add(this.lblProcessor);
@@ -218,7 +218,7 @@
             // CpuRPM
             // 
             this.CpuRPM.AutoSize = true;
-            this.CpuRPM.Location = new System.Drawing.Point(6, 94);
+            this.CpuRPM.Location = new System.Drawing.Point(6, 107);
             this.CpuRPM.Name = "CpuRPM";
             this.CpuRPM.Size = new System.Drawing.Size(37, 19);
             this.CpuRPM.TabIndex = 27;
@@ -257,7 +257,7 @@
             // ramspeedl
             // 
             this.ramspeedl.AutoSize = true;
-            this.ramspeedl.Location = new System.Drawing.Point(6, 73);
+            this.ramspeedl.Location = new System.Drawing.Point(198, 29);
             this.ramspeedl.Name = "ramspeedl";
             this.ramspeedl.Size = new System.Drawing.Size(71, 19);
             this.ramspeedl.TabIndex = 22;
@@ -375,14 +375,23 @@
             this.groupBox3.Controls.Add(this.MonitorSize);
             this.groupBox3.Controls.Add(this.gpufanspeed);
             this.groupBox3.Controls.Add(this.tempgpu);
-            this.groupBox3.Controls.Add(this.gpuram1);
-            this.groupBox3.Controls.Add(this.video);
+            this.groupBox3.Controls.Add(this.gpuramsize);
+            this.groupBox3.Controls.Add(this.gpuname);
             this.groupBox3.Location = new System.Drawing.Point(12, 162);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(385, 144);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "GPU";
+            // 
+            // gpumemory
+            // 
+            this.gpumemory.AutoSize = true;
+            this.gpumemory.Location = new System.Drawing.Point(11, 95);
+            this.gpumemory.Name = "gpumemory";
+            this.gpumemory.Size = new System.Drawing.Size(83, 19);
+            this.gpumemory.TabIndex = 26;
+            this.gpumemory.Text = "gpumemory";
             // 
             // gpushader
             // 
@@ -429,22 +438,22 @@
             this.tempgpu.TabIndex = 21;
             this.tempgpu.Text = "NaN";
             // 
-            // gpuram1
+            // gpuramsize
             // 
-            this.gpuram1.AutoSize = true;
-            this.gpuram1.Location = new System.Drawing.Point(11, 57);
-            this.gpuram1.Name = "gpuram1";
-            this.gpuram1.Size = new System.Drawing.Size(64, 19);
-            this.gpuram1.TabIndex = 20;
-            this.gpuram1.Text = "GPURAM";
+            this.gpuramsize.AutoSize = true;
+            this.gpuramsize.Location = new System.Drawing.Point(11, 57);
+            this.gpuramsize.Name = "gpuramsize";
+            this.gpuramsize.Size = new System.Drawing.Size(64, 19);
+            this.gpuramsize.TabIndex = 20;
+            this.gpuramsize.Text = "GPURAM";
             // 
-            // video
+            // gpuname
             // 
-            this.video.Location = new System.Drawing.Point(11, 19);
-            this.video.Name = "video";
-            this.video.Size = new System.Drawing.Size(363, 19);
-            this.video.TabIndex = 19;
-            this.video.Text = "GPU";
+            this.gpuname.Location = new System.Drawing.Point(11, 19);
+            this.gpuname.Name = "gpuname";
+            this.gpuname.Size = new System.Drawing.Size(363, 19);
+            this.gpuname.TabIndex = 19;
+            this.gpuname.Text = "GPU";
             // 
             // Hddinfo2
             // 
@@ -458,8 +467,8 @@
             this.groupBox4.Controls.Add(this.metroTabControl1);
             this.groupBox4.Controls.Add(this.version);
             this.groupBox4.Controls.Add(this.osnumber);
-            this.groupBox4.Controls.Add(this.osviever);
-            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.osname);
+            this.groupBox4.Controls.Add(this.PCname);
             this.groupBox4.Location = new System.Drawing.Point(403, 26);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(319, 347);
@@ -479,7 +488,7 @@
             this.metroTabControl1.Controls.Add(this.tabPage6);
             this.metroTabControl1.Location = new System.Drawing.Point(10, 94);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.SelectedIndex = 2;
             this.metroTabControl1.Size = new System.Drawing.Size(298, 246);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Green;
             this.metroTabControl1.TabIndex = 23;
@@ -568,7 +577,7 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.label8);
+            this.groupBox6.Controls.Add(this.HDDspeed);
             this.groupBox6.Controls.Add(this.HDD);
             this.groupBox6.Controls.Add(this.hddlist);
             this.groupBox6.Location = new System.Drawing.Point(3, 3);
@@ -578,16 +587,16 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "HDD";
             // 
-            // label8
+            // HDDspeed
             // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(159, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 19);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "HDDSpeed";
-            this.label8.UseCustomBackColor = true;
+            this.HDDspeed.AutoSize = true;
+            this.HDDspeed.BackColor = System.Drawing.Color.Transparent;
+            this.HDDspeed.Location = new System.Drawing.Point(159, 16);
+            this.HDDspeed.Name = "HDDspeed";
+            this.HDDspeed.Size = new System.Drawing.Size(73, 19);
+            this.HDDspeed.TabIndex = 19;
+            this.HDDspeed.Text = "HDDSpeed";
+            this.HDDspeed.UseCustomBackColor = true;
             // 
             // HDD
             // 
@@ -776,22 +785,23 @@
             this.osnumber.TabIndex = 21;
             this.osnumber.Text = "wininfo";
             // 
-            // osviever
+            // osname
             // 
-            this.osviever.Location = new System.Drawing.Point(9, 35);
-            this.osviever.Name = "osviever";
-            this.osviever.Size = new System.Drawing.Size(299, 19);
-            this.osviever.TabIndex = 20;
-            this.osviever.Text = "wininfo";
+            this.osname.Location = new System.Drawing.Point(9, 35);
+            this.osname.Name = "osname";
+            this.osname.Size = new System.Drawing.Size(299, 19);
+            this.osname.TabIndex = 20;
+            this.osname.Text = "wininfo";
             // 
-            // label5
+            // PCname
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 19);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Pcname";
+            this.PCname.AutoSize = true;
+            this.PCname.ForeColor = System.Drawing.Color.Black;
+            this.PCname.Location = new System.Drawing.Point(9, 16);
+            this.PCname.Name = "PCname";
+            this.PCname.Size = new System.Drawing.Size(55, 19);
+            this.PCname.TabIndex = 19;
+            this.PCname.Text = "Pcname";
             // 
             // timer2
             // 
@@ -866,18 +876,18 @@
             this.tempcpu.UseCustomBackColor = true;
             this.tempcpu.UseCustomForeColor = true;
             // 
-            // core
+            // Corecount
             // 
-            this.core.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.core.BackColor = System.Drawing.SystemColors.Menu;
-            this.core.Location = new System.Drawing.Point(796, 77);
-            this.core.Name = "core";
-            this.core.Size = new System.Drawing.Size(95, 19);
-            this.core.TabIndex = 21;
-            this.core.Text = "Core";
-            this.core.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.core.UseCustomBackColor = true;
-            this.core.UseCustomForeColor = true;
+            this.Corecount.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Corecount.BackColor = System.Drawing.SystemColors.Menu;
+            this.Corecount.Location = new System.Drawing.Point(796, 77);
+            this.Corecount.Name = "Corecount";
+            this.Corecount.Size = new System.Drawing.Size(95, 19);
+            this.Corecount.TabIndex = 21;
+            this.Corecount.Text = "Core";
+            this.Corecount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Corecount.UseCustomBackColor = true;
+            this.Corecount.UseCustomForeColor = true;
             // 
             // cpuclock
             // 
@@ -892,17 +902,17 @@
             this.cpuclock.UseCustomBackColor = true;
             this.cpuclock.UseCustomForeColor = true;
             // 
-            // label7
+            // cpuusage
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.SystemColors.Menu;
-            this.label7.Location = new System.Drawing.Point(829, 137);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 19);
-            this.label7.TabIndex = 23;
-            this.label7.Text = "0 %";
-            this.label7.UseCustomBackColor = true;
-            this.label7.UseCustomForeColor = true;
+            this.cpuusage.AutoSize = true;
+            this.cpuusage.BackColor = System.Drawing.SystemColors.Menu;
+            this.cpuusage.Location = new System.Drawing.Point(829, 137);
+            this.cpuusage.Name = "cpuusage";
+            this.cpuusage.Size = new System.Drawing.Size(31, 19);
+            this.cpuusage.TabIndex = 23;
+            this.cpuusage.Text = "0 %";
+            this.cpuusage.UseCustomBackColor = true;
+            this.cpuusage.UseCustomForeColor = true;
             // 
             // metroLabel4
             // 
@@ -956,19 +966,10 @@
             this.loading.ForeColor = System.Drawing.Color.DarkGreen;
             this.loading.Location = new System.Drawing.Point(-10, 5);
             this.loading.Name = "loading";
-            this.loading.Size = new System.Drawing.Size(91, 19);
+            this.loading.Size = new System.Drawing.Size(339, 53);
             this.loading.TabIndex = 27;
             this.loading.Text = "Loading";
             this.loading.UseVisualStyleBackColor = true;
-            // 
-            // gpumemory
-            // 
-            this.gpumemory.AutoSize = true;
-            this.gpumemory.Location = new System.Drawing.Point(11, 95);
-            this.gpumemory.Name = "gpumemory";
-            this.gpumemory.Size = new System.Drawing.Size(83, 19);
-            this.gpumemory.TabIndex = 26;
-            this.gpumemory.Text = "gpumemory";
             // 
             // Form1
             // 
@@ -980,9 +981,9 @@
             this.Controls.Add(this.Multipl);
             this.Controls.Add(this.ramproc);
             this.Controls.Add(this.metroLabel4);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cpuusage);
             this.Controls.Add(this.cpuclock);
-            this.Controls.Add(this.core);
+            this.Controls.Add(this.Corecount);
             this.Controls.Add(this.tempcpu);
             this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.time);
@@ -1054,29 +1055,29 @@
         private System.Windows.Forms.Timer timer2;
         private CircularProgressBar.CircularProgressBar circularProgressBar3;
         private System.Windows.Forms.Timer timer1;
-        private MetroFramework.Controls.MetroLabel label5;
-        private MetroFramework.Controls.MetroLabel osviever;
+        private MetroFramework.Controls.MetroLabel PCname;
+        private MetroFramework.Controls.MetroLabel osname;
         private MetroFramework.Controls.MetroLabel version;
         private MetroFramework.Controls.MetroLabel osnumber;
         private MetroFramework.Controls.MetroLabel cpusocket;
         private MetroFramework.Controls.MetroLabel lblProcessor;
         private MetroFramework.Controls.MetroLabel Socket;
         private MetroFramework.Controls.MetroLabel ramspeedl;
-        private MetroFramework.Controls.MetroLabel temper;
+        private MetroFramework.Controls.MetroLabel allram;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroLabel lblMemoryAvailable;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel tempgpu;
-        private MetroFramework.Controls.MetroLabel gpuram1;
-        private MetroFramework.Controls.MetroLabel video;
+        private MetroFramework.Controls.MetroLabel gpuramsize;
+        private MetroFramework.Controls.MetroLabel gpuname;
         private MetroFramework.Controls.MetroLabel gpufanspeed;
         private MetroFramework.Controls.MetroLabel MonitorSize;
         private MetroFramework.Controls.MetroLabel time;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel tempcpu;
-        private MetroFramework.Controls.MetroLabel core;
+        private MetroFramework.Controls.MetroLabel Corecount;
         private MetroFramework.Controls.MetroLabel cpuclock;
-        private MetroFramework.Controls.MetroLabel label7;
+        private MetroFramework.Controls.MetroLabel cpuusage;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroLabel ramproc;
         private System.Diagnostics.PerformanceCounter pcProcessor;
@@ -1086,7 +1087,7 @@
         private MetroFramework.Controls.MetroTabControl metroTabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox6;
-        private MetroFramework.Controls.MetroLabel label8;
+        private MetroFramework.Controls.MetroLabel HDDspeed;
         private MetroFramework.Controls.MetroLabel HDD;
         private System.Windows.Forms.TextBox hddlist;
         private System.Windows.Forms.TabPage tabPage2;
