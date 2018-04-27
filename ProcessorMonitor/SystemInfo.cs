@@ -10,6 +10,7 @@ namespace SysInfo
 {
     class SystemInfo
     {
+        public string CPUUsage { get; set; }
         public string GPUname {get;set;}
         public string GPUSize { get; set; }
         public string Ports { get; set; }
@@ -80,7 +81,7 @@ namespace SysInfo
 
             foreach (ManagementObject queryObj in searcher.Get())
             {
-                networks.Add(string.Format("{0} : {1}", queryObj["Name"], Math.Truncate(Convert.ToDouble(queryObj["Speed"]) / 1024 / 1024)) + "MB/s");
+                networks.Add(string.Format("{0} : {1}", queryObj["Name"], Math.Truncate(Convert.ToDouble(queryObj["Speed"]) / 1024 / 1024)) + " MB/s");
             }
 
         }
@@ -94,12 +95,23 @@ namespace SysInfo
         public string CoreNumber { get; set; }
         public string Version { get; set; }
         public string Time { get; set; }
+        public string Ramspeed { get; set; }
+        public void ramspeed()
+        {
+            ManagementObjectSearcher searcher =
+                new ManagementObjectSearcher("root\\CIMV2",
+                "SELECT * FROM Win32_PhysicalMemory");
 
+            foreach (ManagementObject queryObj in searcher.Get())
+            {
+                Ramspeed = string.Format("Частота памяти: {0}", queryObj["Speed"]) + " MHz";
+            }
+
+        }
         public void time()
         {
             Time = System.DateTime.Now.ToString();
         }
-
 
         public void wininfo()
         {
