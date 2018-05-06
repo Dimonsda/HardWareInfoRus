@@ -12,7 +12,6 @@ using SysInfo;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Research.DynamicDataDisplay;
 
 namespace ProcessorMonitor
 {
@@ -39,32 +38,6 @@ namespace ProcessorMonitor
                 }
             }
             catch { }
-        }
-        public void raminfo2()
-        {
-
-            ManagementObjectSearcher searcher =
-                    new ManagementObjectSearcher("root\\CIMV2",
-                    "SELECT * FROM Win32_PhysicalMemoryArray");
-
-            foreach (ManagementObject queryObj in searcher.Get())
-            {
-                rambox.AppendText(string.Format("Максимальный объём: {0}", Convert.ToDouble(queryObj["MaxCapacity"]) / 1024) + "MB" + Environment.NewLine + Environment.NewLine);
-
-            }
-        }
-        public void raminfo()
-        {
-
-            ManagementObjectSearcher searcher =
-                    new ManagementObjectSearcher("root\\CIMV2",
-                    "SELECT * FROM Win32_PhysicalMemory");
-
-            foreach (ManagementObject queryObj in searcher.Get())
-            {
-                rambox.AppendText(string.Format("Модуль: {0}", queryObj["DeviceLocator"]) + Environment.NewLine);
-                rambox.AppendText(string.Format("Объём: {0}", Convert.ToDouble(queryObj["Capacity"]) / 1024 / 1024) + " MB" + Environment.NewLine + Environment.NewLine);
-            }
         }
         public void usbinfo()
         {
@@ -112,7 +85,6 @@ namespace ProcessorMonitor
 
 
         }
-
         public void Voltage()
         {
             c.CPUEnabled = true;
@@ -300,8 +272,10 @@ namespace ProcessorMonitor
             }
             catch { }
         }
-
-
+        public void Test()
+        {
+           
+        }
         public void readclass()
         {
             info.ports();
@@ -310,8 +284,8 @@ namespace ProcessorMonitor
             info.videoRAM();
             info.network();
             info.wininfo();
-            info.ramspeed();
-
+            info.totalRam();
+            info.raminfo();
 
 
 
@@ -320,6 +294,12 @@ namespace ProcessorMonitor
             gpuname.Text = info.GPUname;
             gpuramsize.Text = info.GPUSize;
             version.Text = info.Version;
+
+
+            //rambox.AppendText(info.RamModule + info.RamValue);
+            rambox.AppendText(string.Join("",info.raminfor));
+
+
 
             Ports.AppendText(string.Join("", info.portss));
 
@@ -339,12 +319,10 @@ namespace ProcessorMonitor
 
             PCname.Text = info.PCname;
 
-            allram.Text = info.TotalRam;
+            allram.Text = (new Microsoft.VisualBasic.Devices.ComputerInfo().TotalPhysicalMemory/1024/1024).ToString() + " MB";
 
-            ramspeedl.Text = info.Ramspeed;
-
+            totalram.Text = info.TotalRam;
         }
-
         public void wininfo()
         {
             //HDD
@@ -373,9 +351,8 @@ namespace ProcessorMonitor
             BeginInvoke(new MyDelegate(hddinfo));
             BeginInvoke(new MyDelegate(cache));
             BeginInvoke(new MyDelegate(proc));
+            BeginInvoke(new MyDelegate(Test));
             BeginInvoke(new MyDelegate(wininfo));
-            BeginInvoke(new MyDelegate(raminfo2));
-            BeginInvoke(new MyDelegate(raminfo));
             BeginInvoke(new MyDelegate(usbinfo));
 
             backgroundWorker2.CancelAsync();
@@ -394,9 +371,7 @@ namespace ProcessorMonitor
             circularProgressBar1.Value = CPUusage;
             cpuusage.Text = circularProgressBar1.Value.ToString() + "%";
 
-            cpuload.Text = "Загрузка процессора: " + circularProgressBar1.Value.ToString() + "%";
-
-            lblMemoryAvailable.Text = ((int)pcMemoryAvailable.NextValue()).ToString();
+            lblMemoryAvailable.Text = ((int)pcMemoryAvailable.NextValue()).ToString() + " MB";
             circularProgressBar2.Value = (int)Memory.NextValue();
 
             ramproc.Text = Math.Truncate(Memory.NextValue()).ToString() + "%";

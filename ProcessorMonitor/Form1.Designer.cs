@@ -30,14 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.pcProcessor = new System.Diagnostics.PerformanceCounter();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pcMemoryAvailable = new System.Diagnostics.PerformanceCounter();
             this.allram = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.totalramlabel = new MetroFramework.Controls.MetroLabel();
             this.lblMemoryAvailable = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.ramspeedl = new MetroFramework.Controls.MetroLabel();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
             this.Memory = new System.Diagnostics.PerformanceCounter();
@@ -77,26 +75,25 @@
             this.L3Cache = new MetroFramework.Controls.MetroLabel();
             this.L2Cache = new MetroFramework.Controls.MetroLabel();
             this.L1Cache = new MetroFramework.Controls.MetroLabel();
-            this.cpuload = new MetroFramework.Controls.MetroLabel();
             this.Socket = new MetroFramework.Controls.MetroLabel();
             this.cpusocket = new MetroFramework.Controls.MetroLabel();
             this.GPUTabPage = new MetroFramework.Controls.MetroTabPage();
             this.CPUTabPage = new MetroFramework.Controls.MetroTabPage();
+            this.totalram = new MetroFramework.Controls.MetroLabel();
+            this.rambox = new MetroFramework.Controls.MetroTextBox();
             this.VoltageTabPage = new MetroFramework.Controls.MetroTabPage();
+            this.voltagebox = new MetroFramework.Controls.MetroTextBox();
             this.HDDTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.hddlist = new MetroFramework.Controls.MetroTextBox();
             this.USBTabPage = new MetroFramework.Controls.MetroTabPage();
+            this.usb = new MetroFramework.Controls.MetroTextBox();
             this.PortsTabPage = new MetroFramework.Controls.MetroTabPage();
+            this.Ports = new MetroFramework.Controls.MetroTextBox();
             this.BoardTabPage = new MetroFramework.Controls.MetroTabPage();
             this.Motherboard = new MetroFramework.Controls.MetroLabel();
             this.NetworkTabPage = new MetroFramework.Controls.MetroTabPage();
-            this.OSTabPage = new MetroFramework.Controls.MetroTabPage();
-            this.rambox = new MetroFramework.Controls.MetroTextBox();
-            this.voltagebox = new MetroFramework.Controls.MetroTextBox();
-            this.hddlist = new MetroFramework.Controls.MetroTextBox();
-            this.usb = new MetroFramework.Controls.MetroTextBox();
-            this.Ports = new MetroFramework.Controls.MetroTextBox();
             this.Network = new MetroFramework.Controls.MetroTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pcProcessor)).BeginInit();
+            this.OSTabPage = new MetroFramework.Controls.MetroTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.pcMemoryAvailable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Memory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hddinfo1)).BeginInit();
@@ -113,12 +110,6 @@
             this.NetworkTabPage.SuspendLayout();
             this.OSTabPage.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pcProcessor
-            // 
-            this.pcProcessor.CategoryName = "Процессор";
-            this.pcProcessor.CounterName = "% загруженности процессора";
-            this.pcProcessor.InstanceName = "_Total";
             // 
             // timer1
             // 
@@ -140,15 +131,15 @@
             this.allram.TabIndex = 16;
             this.allram.Text = "-";
             // 
-            // metroLabel2
+            // totalramlabel
             // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel2.Location = new System.Drawing.Point(3, 282);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(43, 19);
-            this.metroLabel2.TabIndex = 15;
-            this.metroLabel2.Text = "Всего";
+            this.totalramlabel.AutoSize = true;
+            this.totalramlabel.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.totalramlabel.Location = new System.Drawing.Point(3, 282);
+            this.totalramlabel.Name = "totalramlabel";
+            this.totalramlabel.Size = new System.Drawing.Size(43, 19);
+            this.totalramlabel.TabIndex = 15;
+            this.totalramlabel.Text = "Всего";
             // 
             // lblMemoryAvailable
             // 
@@ -169,16 +160,6 @@
             this.metroLabel1.TabIndex = 13;
             this.metroLabel1.Text = "Доступно";
             // 
-            // ramspeedl
-            // 
-            this.ramspeedl.AutoSize = true;
-            this.ramspeedl.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.ramspeedl.Location = new System.Drawing.Point(192, 282);
-            this.ramspeedl.Name = "ramspeedl";
-            this.ramspeedl.Size = new System.Drawing.Size(72, 19);
-            this.ramspeedl.TabIndex = 22;
-            this.ramspeedl.Text = "Ramspeed";
-            // 
             // circularProgressBar1
             // 
             this.circularProgressBar1.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.CircularEaseIn;
@@ -186,7 +167,7 @@
             this.circularProgressBar1.BackColor = System.Drawing.Color.Transparent;
             this.circularProgressBar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold);
             this.circularProgressBar1.ForeColor = System.Drawing.Color.Transparent;
-            this.circularProgressBar1.InnerColor = System.Drawing.SystemColors.Menu;
+            this.circularProgressBar1.InnerColor = System.Drawing.Color.White;
             this.circularProgressBar1.InnerMargin = 2;
             this.circularProgressBar1.InnerWidth = -1;
             this.circularProgressBar1.Location = new System.Drawing.Point(501, 29);
@@ -198,11 +179,11 @@
             this.circularProgressBar1.ProgressColor = System.Drawing.Color.DarkOrange;
             this.circularProgressBar1.ProgressWidth = 25;
             this.circularProgressBar1.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 36F);
-            this.circularProgressBar1.Size = new System.Drawing.Size(180, 169);
+            this.circularProgressBar1.Size = new System.Drawing.Size(180, 180);
             this.circularProgressBar1.StartAngle = 270;
             this.circularProgressBar1.Step = 1;
             this.circularProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.circularProgressBar1.SubscriptColor = System.Drawing.Color.DimGray;
+            this.circularProgressBar1.SubscriptColor = System.Drawing.Color.White;
             this.circularProgressBar1.SubscriptMargin = new System.Windows.Forms.Padding(5, -35, 0, 0);
             this.circularProgressBar1.SubscriptText = "";
             this.circularProgressBar1.SuperscriptColor = System.Drawing.Color.White;
@@ -222,7 +203,7 @@
             this.circularProgressBar2.InnerColor = System.Drawing.SystemColors.Menu;
             this.circularProgressBar2.InnerMargin = 2;
             this.circularProgressBar2.InnerWidth = -1;
-            this.circularProgressBar2.Location = new System.Drawing.Point(507, 92);
+            this.circularProgressBar2.Location = new System.Drawing.Point(523, 28);
             this.circularProgressBar2.MarqueeAnimationSpeed = 15;
             this.circularProgressBar2.Name = "circularProgressBar2";
             this.circularProgressBar2.OuterColor = System.Drawing.Color.SkyBlue;
@@ -415,7 +396,7 @@
             this.circularProgressBar3.AnimationSpeed = 500;
             this.circularProgressBar3.BackColor = System.Drawing.Color.Transparent;
             this.circularProgressBar3.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold);
-            this.circularProgressBar3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.circularProgressBar3.ForeColor = System.Drawing.Color.White;
             this.circularProgressBar3.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.circularProgressBar3.InnerMargin = 2;
             this.circularProgressBar3.InnerWidth = -1;
@@ -453,7 +434,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.BackColor = System.Drawing.SystemColors.Menu;
+            this.metroLabel3.BackColor = System.Drawing.Color.White;
             this.metroLabel3.ForeColor = System.Drawing.Color.Black;
             this.metroLabel3.Location = new System.Drawing.Point(574, 66);
             this.metroLabel3.Name = "metroLabel3";
@@ -492,7 +473,7 @@
             // cpuclock
             // 
             this.cpuclock.AutoSize = true;
-            this.cpuclock.BackColor = System.Drawing.SystemColors.Menu;
+            this.cpuclock.BackColor = System.Drawing.Color.White;
             this.cpuclock.Location = new System.Drawing.Point(557, 126);
             this.cpuclock.Name = "cpuclock";
             this.cpuclock.Size = new System.Drawing.Size(72, 19);
@@ -505,7 +486,7 @@
             // cpuusage
             // 
             this.cpuusage.AutoSize = true;
-            this.cpuusage.BackColor = System.Drawing.SystemColors.Menu;
+            this.cpuusage.BackColor = System.Drawing.Color.White;
             this.cpuusage.Location = new System.Drawing.Point(574, 145);
             this.cpuusage.Name = "cpuusage";
             this.cpuusage.Size = new System.Drawing.Size(31, 19);
@@ -519,7 +500,7 @@
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.BackColor = System.Drawing.SystemColors.Menu;
             this.metroLabel4.ForeColor = System.Drawing.Color.Black;
-            this.metroLabel4.Location = new System.Drawing.Point(579, 165);
+            this.metroLabel4.Location = new System.Drawing.Point(595, 101);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(38, 19);
             this.metroLabel4.TabIndex = 24;
@@ -531,7 +512,7 @@
             // 
             this.ramproc.BackColor = System.Drawing.SystemColors.Menu;
             this.ramproc.ForeColor = System.Drawing.Color.Black;
-            this.ramproc.Location = new System.Drawing.Point(568, 207);
+            this.ramproc.Location = new System.Drawing.Point(584, 143);
             this.ramproc.Name = "ramproc";
             this.ramproc.Size = new System.Drawing.Size(64, 19);
             this.ramproc.TabIndex = 25;
@@ -550,7 +531,7 @@
             // 
             // Multipl
             // 
-            this.Multipl.BackColor = System.Drawing.SystemColors.Menu;
+            this.Multipl.BackColor = System.Drawing.Color.White;
             this.Multipl.Location = new System.Drawing.Point(541, 104);
             this.Multipl.Name = "Multipl";
             this.Multipl.Size = new System.Drawing.Size(106, 19);
@@ -562,17 +543,19 @@
             // 
             // loading
             // 
+            this.loading.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.loading.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loading.ForeColor = System.Drawing.Color.DarkGreen;
             this.loading.Location = new System.Drawing.Point(-4, 8);
             this.loading.Name = "loading";
-            this.loading.Size = new System.Drawing.Size(753, 389);
+            this.loading.Size = new System.Drawing.Size(128, 19);
             this.loading.TabIndex = 27;
             this.loading.Text = "Loading";
             this.loading.UseVisualStyleBackColor = true;
             // 
             // metroTabControl2
             // 
+            this.metroTabControl2.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.metroTabControl2.Controls.Add(this.RAMTabPage);
             this.metroTabControl2.Controls.Add(this.GPUTabPage);
             this.metroTabControl2.Controls.Add(this.CPUTabPage);
@@ -587,7 +570,7 @@
             this.metroTabControl2.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.metroTabControl2.Location = new System.Drawing.Point(6, 30);
             this.metroTabControl2.Name = "metroTabControl2";
-            this.metroTabControl2.SelectedIndex = 0;
+            this.metroTabControl2.SelectedIndex = 2;
             this.metroTabControl2.Size = new System.Drawing.Size(730, 350);
             this.metroTabControl2.Style = MetroFramework.MetroColorStyle.Black;
             this.metroTabControl2.TabIndex = 29;
@@ -602,7 +585,6 @@
             this.RAMTabPage.Controls.Add(this.cpuusage);
             this.RAMTabPage.Controls.Add(this.L1Cache);
             this.RAMTabPage.Controls.Add(this.cpuclock);
-            this.RAMTabPage.Controls.Add(this.cpuload);
             this.RAMTabPage.Controls.Add(this.Socket);
             this.RAMTabPage.Controls.Add(this.tempcpu);
             this.RAMTabPage.Controls.Add(this.cpusocket);
@@ -612,9 +594,9 @@
             this.RAMTabPage.HorizontalScrollbarBarColor = true;
             this.RAMTabPage.HorizontalScrollbarHighlightOnWheel = false;
             this.RAMTabPage.HorizontalScrollbarSize = 10;
-            this.RAMTabPage.Location = new System.Drawing.Point(4, 34);
+            this.RAMTabPage.Location = new System.Drawing.Point(4, 37);
             this.RAMTabPage.Name = "RAMTabPage";
-            this.RAMTabPage.Size = new System.Drawing.Size(722, 312);
+            this.RAMTabPage.Size = new System.Drawing.Size(722, 309);
             this.RAMTabPage.TabIndex = 0;
             this.RAMTabPage.Text = "CPU";
             this.RAMTabPage.VerticalScrollbarBarColor = true;
@@ -625,7 +607,7 @@
             // 
             this.CpuRPM.AutoSize = true;
             this.CpuRPM.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.CpuRPM.Location = new System.Drawing.Point(13, 293);
+            this.CpuRPM.Location = new System.Drawing.Point(13, 286);
             this.CpuRPM.Name = "CpuRPM";
             this.CpuRPM.Size = new System.Drawing.Size(38, 19);
             this.CpuRPM.TabIndex = 27;
@@ -664,21 +646,11 @@
             this.L1Cache.TabIndex = 23;
             this.L1Cache.Text = "L1 Cache";
             // 
-            // cpuload
-            // 
-            this.cpuload.AutoSize = true;
-            this.cpuload.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.cpuload.Location = new System.Drawing.Point(13, 9);
-            this.cpuload.Name = "cpuload";
-            this.cpuload.Size = new System.Drawing.Size(66, 19);
-            this.cpuload.TabIndex = 19;
-            this.cpuload.Text = "CPULoad";
-            // 
             // Socket
             // 
             this.Socket.AutoSize = true;
             this.Socket.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.Socket.Location = new System.Drawing.Point(13, 81);
+            this.Socket.Location = new System.Drawing.Point(13, 40);
             this.Socket.Name = "Socket";
             this.Socket.Size = new System.Drawing.Size(49, 19);
             this.Socket.TabIndex = 21;
@@ -688,7 +660,7 @@
             // 
             this.cpusocket.AutoSize = true;
             this.cpusocket.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.cpusocket.Location = new System.Drawing.Point(13, 43);
+            this.cpusocket.Location = new System.Drawing.Point(13, 11);
             this.cpusocket.Name = "cpusocket";
             this.cpusocket.Size = new System.Drawing.Size(36, 19);
             this.cpusocket.TabIndex = 20;
@@ -707,9 +679,9 @@
             this.GPUTabPage.HorizontalScrollbarBarColor = true;
             this.GPUTabPage.HorizontalScrollbarHighlightOnWheel = false;
             this.GPUTabPage.HorizontalScrollbarSize = 10;
-            this.GPUTabPage.Location = new System.Drawing.Point(4, 34);
+            this.GPUTabPage.Location = new System.Drawing.Point(4, 37);
             this.GPUTabPage.Name = "GPUTabPage";
-            this.GPUTabPage.Size = new System.Drawing.Size(722, 312);
+            this.GPUTabPage.Size = new System.Drawing.Size(722, 309);
             this.GPUTabPage.TabIndex = 1;
             this.GPUTabPage.Text = "GPU";
             this.GPUTabPage.VerticalScrollbarBarColor = true;
@@ -718,146 +690,35 @@
             // 
             // CPUTabPage
             // 
+            this.CPUTabPage.Controls.Add(this.totalram);
             this.CPUTabPage.Controls.Add(this.rambox);
             this.CPUTabPage.Controls.Add(this.ramproc);
             this.CPUTabPage.Controls.Add(this.metroLabel4);
             this.CPUTabPage.Controls.Add(this.allram);
-            this.CPUTabPage.Controls.Add(this.metroLabel2);
+            this.CPUTabPage.Controls.Add(this.totalramlabel);
             this.CPUTabPage.Controls.Add(this.circularProgressBar2);
             this.CPUTabPage.Controls.Add(this.lblMemoryAvailable);
             this.CPUTabPage.Controls.Add(this.metroLabel1);
-            this.CPUTabPage.Controls.Add(this.ramspeedl);
             this.CPUTabPage.HorizontalScrollbarBarColor = true;
             this.CPUTabPage.HorizontalScrollbarHighlightOnWheel = false;
             this.CPUTabPage.HorizontalScrollbarSize = 10;
-            this.CPUTabPage.Location = new System.Drawing.Point(4, 34);
+            this.CPUTabPage.Location = new System.Drawing.Point(4, 37);
             this.CPUTabPage.Name = "CPUTabPage";
-            this.CPUTabPage.Size = new System.Drawing.Size(722, 312);
+            this.CPUTabPage.Size = new System.Drawing.Size(722, 309);
             this.CPUTabPage.TabIndex = 2;
             this.CPUTabPage.Text = "RAM";
             this.CPUTabPage.VerticalScrollbarBarColor = true;
             this.CPUTabPage.VerticalScrollbarHighlightOnWheel = false;
             this.CPUTabPage.VerticalScrollbarSize = 10;
             // 
-            // VoltageTabPage
+            // totalram
             // 
-            this.VoltageTabPage.Controls.Add(this.voltagebox);
-            this.VoltageTabPage.HorizontalScrollbarBarColor = true;
-            this.VoltageTabPage.HorizontalScrollbarHighlightOnWheel = false;
-            this.VoltageTabPage.HorizontalScrollbarSize = 10;
-            this.VoltageTabPage.Location = new System.Drawing.Point(4, 34);
-            this.VoltageTabPage.Name = "VoltageTabPage";
-            this.VoltageTabPage.Size = new System.Drawing.Size(722, 312);
-            this.VoltageTabPage.TabIndex = 3;
-            this.VoltageTabPage.Text = "Voltage";
-            this.VoltageTabPage.VerticalScrollbarBarColor = true;
-            this.VoltageTabPage.VerticalScrollbarHighlightOnWheel = false;
-            this.VoltageTabPage.VerticalScrollbarSize = 10;
-            // 
-            // HDDTabPage1
-            // 
-            this.HDDTabPage1.Controls.Add(this.hddlist);
-            this.HDDTabPage1.Controls.Add(this.HDDspeed);
-            this.HDDTabPage1.Controls.Add(this.HDD);
-            this.HDDTabPage1.HorizontalScrollbarBarColor = true;
-            this.HDDTabPage1.HorizontalScrollbarHighlightOnWheel = false;
-            this.HDDTabPage1.HorizontalScrollbarSize = 10;
-            this.HDDTabPage1.Location = new System.Drawing.Point(4, 34);
-            this.HDDTabPage1.Name = "HDDTabPage1";
-            this.HDDTabPage1.Size = new System.Drawing.Size(722, 312);
-            this.HDDTabPage1.TabIndex = 5;
-            this.HDDTabPage1.Text = "HDD";
-            this.HDDTabPage1.VerticalScrollbarBarColor = true;
-            this.HDDTabPage1.VerticalScrollbarHighlightOnWheel = false;
-            this.HDDTabPage1.VerticalScrollbarSize = 10;
-            // 
-            // USBTabPage
-            // 
-            this.USBTabPage.Controls.Add(this.usb);
-            this.USBTabPage.HorizontalScrollbarBarColor = true;
-            this.USBTabPage.HorizontalScrollbarHighlightOnWheel = false;
-            this.USBTabPage.HorizontalScrollbarSize = 10;
-            this.USBTabPage.Location = new System.Drawing.Point(4, 34);
-            this.USBTabPage.Name = "USBTabPage";
-            this.USBTabPage.Size = new System.Drawing.Size(722, 312);
-            this.USBTabPage.TabIndex = 6;
-            this.USBTabPage.Text = "USB";
-            this.USBTabPage.VerticalScrollbarBarColor = true;
-            this.USBTabPage.VerticalScrollbarHighlightOnWheel = false;
-            this.USBTabPage.VerticalScrollbarSize = 10;
-            // 
-            // PortsTabPage
-            // 
-            this.PortsTabPage.Controls.Add(this.Ports);
-            this.PortsTabPage.HorizontalScrollbarBarColor = true;
-            this.PortsTabPage.HorizontalScrollbarHighlightOnWheel = false;
-            this.PortsTabPage.HorizontalScrollbarSize = 10;
-            this.PortsTabPage.Location = new System.Drawing.Point(4, 34);
-            this.PortsTabPage.Name = "PortsTabPage";
-            this.PortsTabPage.Size = new System.Drawing.Size(722, 312);
-            this.PortsTabPage.TabIndex = 7;
-            this.PortsTabPage.Text = "Ports";
-            this.PortsTabPage.VerticalScrollbarBarColor = true;
-            this.PortsTabPage.VerticalScrollbarHighlightOnWheel = false;
-            this.PortsTabPage.VerticalScrollbarSize = 10;
-            // 
-            // BoardTabPage
-            // 
-            this.BoardTabPage.Controls.Add(this.Motherboard);
-            this.BoardTabPage.HorizontalScrollbarBarColor = true;
-            this.BoardTabPage.HorizontalScrollbarHighlightOnWheel = false;
-            this.BoardTabPage.HorizontalScrollbarSize = 10;
-            this.BoardTabPage.Location = new System.Drawing.Point(4, 34);
-            this.BoardTabPage.Name = "BoardTabPage";
-            this.BoardTabPage.Size = new System.Drawing.Size(722, 312);
-            this.BoardTabPage.TabIndex = 8;
-            this.BoardTabPage.Text = "Board";
-            this.BoardTabPage.VerticalScrollbarBarColor = true;
-            this.BoardTabPage.VerticalScrollbarHighlightOnWheel = false;
-            this.BoardTabPage.VerticalScrollbarSize = 10;
-            // 
-            // Motherboard
-            // 
-            this.Motherboard.AutoSize = true;
-            this.Motherboard.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.Motherboard.Location = new System.Drawing.Point(11, 22);
-            this.Motherboard.Name = "Motherboard";
-            this.Motherboard.Size = new System.Drawing.Size(45, 19);
-            this.Motherboard.TabIndex = 23;
-            this.Motherboard.Text = "Board";
-            // 
-            // NetworkTabPage
-            // 
-            this.NetworkTabPage.Controls.Add(this.Network);
-            this.NetworkTabPage.HorizontalScrollbarBarColor = true;
-            this.NetworkTabPage.HorizontalScrollbarHighlightOnWheel = false;
-            this.NetworkTabPage.HorizontalScrollbarSize = 10;
-            this.NetworkTabPage.Location = new System.Drawing.Point(4, 34);
-            this.NetworkTabPage.Name = "NetworkTabPage";
-            this.NetworkTabPage.Size = new System.Drawing.Size(722, 312);
-            this.NetworkTabPage.TabIndex = 9;
-            this.NetworkTabPage.Text = "Network";
-            this.NetworkTabPage.VerticalScrollbarBarColor = true;
-            this.NetworkTabPage.VerticalScrollbarHighlightOnWheel = false;
-            this.NetworkTabPage.VerticalScrollbarSize = 10;
-            // 
-            // OSTabPage
-            // 
-            this.OSTabPage.Controls.Add(this.version);
-            this.OSTabPage.Controls.Add(this.osnumber);
-            this.OSTabPage.Controls.Add(this.osname);
-            this.OSTabPage.Controls.Add(this.PCname);
-            this.OSTabPage.HorizontalScrollbarBarColor = true;
-            this.OSTabPage.HorizontalScrollbarHighlightOnWheel = false;
-            this.OSTabPage.HorizontalScrollbarSize = 10;
-            this.OSTabPage.Location = new System.Drawing.Point(4, 34);
-            this.OSTabPage.Name = "OSTabPage";
-            this.OSTabPage.Size = new System.Drawing.Size(722, 312);
-            this.OSTabPage.TabIndex = 10;
-            this.OSTabPage.Text = "OS";
-            this.OSTabPage.VerticalScrollbarBarColor = true;
-            this.OSTabPage.VerticalScrollbarHighlightOnWheel = false;
-            this.OSTabPage.VerticalScrollbarSize = 10;
+            this.totalram.AutoSize = true;
+            this.totalram.Location = new System.Drawing.Point(192, 263);
+            this.totalram.Name = "totalram";
+            this.totalram.Size = new System.Drawing.Size(63, 19);
+            this.totalram.TabIndex = 27;
+            this.totalram.Text = "TotalRam";
             // 
             // rambox
             // 
@@ -881,7 +742,7 @@
             this.rambox.Name = "rambox";
             this.rambox.PasswordChar = '\0';
             this.rambox.ReadOnly = true;
-            this.rambox.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.rambox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.rambox.SelectedText = "";
             this.rambox.SelectionLength = 0;
             this.rambox.SelectionStart = 0;
@@ -892,6 +753,21 @@
             this.rambox.UseSelectable = true;
             this.rambox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.rambox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // VoltageTabPage
+            // 
+            this.VoltageTabPage.Controls.Add(this.voltagebox);
+            this.VoltageTabPage.HorizontalScrollbarBarColor = true;
+            this.VoltageTabPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.VoltageTabPage.HorizontalScrollbarSize = 10;
+            this.VoltageTabPage.Location = new System.Drawing.Point(4, 37);
+            this.VoltageTabPage.Name = "VoltageTabPage";
+            this.VoltageTabPage.Size = new System.Drawing.Size(722, 309);
+            this.VoltageTabPage.TabIndex = 3;
+            this.VoltageTabPage.Text = "Voltage";
+            this.VoltageTabPage.VerticalScrollbarBarColor = true;
+            this.VoltageTabPage.VerticalScrollbarHighlightOnWheel = false;
+            this.VoltageTabPage.VerticalScrollbarSize = 10;
             // 
             // voltagebox
             // 
@@ -927,6 +803,23 @@
             this.voltagebox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.voltagebox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
+            // HDDTabPage1
+            // 
+            this.HDDTabPage1.Controls.Add(this.hddlist);
+            this.HDDTabPage1.Controls.Add(this.HDDspeed);
+            this.HDDTabPage1.Controls.Add(this.HDD);
+            this.HDDTabPage1.HorizontalScrollbarBarColor = true;
+            this.HDDTabPage1.HorizontalScrollbarHighlightOnWheel = false;
+            this.HDDTabPage1.HorizontalScrollbarSize = 10;
+            this.HDDTabPage1.Location = new System.Drawing.Point(4, 37);
+            this.HDDTabPage1.Name = "HDDTabPage1";
+            this.HDDTabPage1.Size = new System.Drawing.Size(722, 309);
+            this.HDDTabPage1.TabIndex = 5;
+            this.HDDTabPage1.Text = "HDD";
+            this.HDDTabPage1.VerticalScrollbarBarColor = true;
+            this.HDDTabPage1.VerticalScrollbarHighlightOnWheel = false;
+            this.HDDTabPage1.VerticalScrollbarSize = 10;
+            // 
             // hddlist
             // 
             // 
@@ -960,6 +853,21 @@
             this.hddlist.UseSelectable = true;
             this.hddlist.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.hddlist.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // USBTabPage
+            // 
+            this.USBTabPage.Controls.Add(this.usb);
+            this.USBTabPage.HorizontalScrollbarBarColor = true;
+            this.USBTabPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.USBTabPage.HorizontalScrollbarSize = 10;
+            this.USBTabPage.Location = new System.Drawing.Point(4, 37);
+            this.USBTabPage.Name = "USBTabPage";
+            this.USBTabPage.Size = new System.Drawing.Size(722, 309);
+            this.USBTabPage.TabIndex = 6;
+            this.USBTabPage.Text = "USB";
+            this.USBTabPage.VerticalScrollbarBarColor = true;
+            this.USBTabPage.VerticalScrollbarHighlightOnWheel = false;
+            this.USBTabPage.VerticalScrollbarSize = 10;
             // 
             // usb
             // 
@@ -995,6 +903,21 @@
             this.usb.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.usb.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
+            // PortsTabPage
+            // 
+            this.PortsTabPage.Controls.Add(this.Ports);
+            this.PortsTabPage.HorizontalScrollbarBarColor = true;
+            this.PortsTabPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.PortsTabPage.HorizontalScrollbarSize = 10;
+            this.PortsTabPage.Location = new System.Drawing.Point(4, 37);
+            this.PortsTabPage.Name = "PortsTabPage";
+            this.PortsTabPage.Size = new System.Drawing.Size(722, 309);
+            this.PortsTabPage.TabIndex = 7;
+            this.PortsTabPage.Text = "Ports";
+            this.PortsTabPage.VerticalScrollbarBarColor = true;
+            this.PortsTabPage.VerticalScrollbarHighlightOnWheel = false;
+            this.PortsTabPage.VerticalScrollbarSize = 10;
+            // 
             // Ports
             // 
             // 
@@ -1029,6 +952,46 @@
             this.Ports.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.Ports.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
+            // BoardTabPage
+            // 
+            this.BoardTabPage.Controls.Add(this.Motherboard);
+            this.BoardTabPage.HorizontalScrollbarBarColor = true;
+            this.BoardTabPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.BoardTabPage.HorizontalScrollbarSize = 10;
+            this.BoardTabPage.Location = new System.Drawing.Point(4, 37);
+            this.BoardTabPage.Name = "BoardTabPage";
+            this.BoardTabPage.Size = new System.Drawing.Size(722, 309);
+            this.BoardTabPage.TabIndex = 8;
+            this.BoardTabPage.Text = "Board";
+            this.BoardTabPage.VerticalScrollbarBarColor = true;
+            this.BoardTabPage.VerticalScrollbarHighlightOnWheel = false;
+            this.BoardTabPage.VerticalScrollbarSize = 10;
+            // 
+            // Motherboard
+            // 
+            this.Motherboard.AutoSize = true;
+            this.Motherboard.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.Motherboard.Location = new System.Drawing.Point(11, 22);
+            this.Motherboard.Name = "Motherboard";
+            this.Motherboard.Size = new System.Drawing.Size(45, 19);
+            this.Motherboard.TabIndex = 23;
+            this.Motherboard.Text = "Board";
+            // 
+            // NetworkTabPage
+            // 
+            this.NetworkTabPage.Controls.Add(this.Network);
+            this.NetworkTabPage.HorizontalScrollbarBarColor = true;
+            this.NetworkTabPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.NetworkTabPage.HorizontalScrollbarSize = 10;
+            this.NetworkTabPage.Location = new System.Drawing.Point(4, 37);
+            this.NetworkTabPage.Name = "NetworkTabPage";
+            this.NetworkTabPage.Size = new System.Drawing.Size(722, 309);
+            this.NetworkTabPage.TabIndex = 9;
+            this.NetworkTabPage.Text = "Network";
+            this.NetworkTabPage.VerticalScrollbarBarColor = true;
+            this.NetworkTabPage.VerticalScrollbarHighlightOnWheel = false;
+            this.NetworkTabPage.VerticalScrollbarSize = 10;
+            // 
             // Network
             // 
             // 
@@ -1055,13 +1018,31 @@
             this.Network.SelectedText = "";
             this.Network.SelectionLength = 0;
             this.Network.SelectionStart = 0;
-            this.Network.ShortcutsEnabled = true;
+            this.Network.ShortcutsEnabled = false;
             this.Network.Size = new System.Drawing.Size(719, 301);
             this.Network.Style = MetroFramework.MetroColorStyle.Black;
             this.Network.TabIndex = 27;
             this.Network.UseSelectable = true;
             this.Network.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.Network.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // OSTabPage
+            // 
+            this.OSTabPage.Controls.Add(this.version);
+            this.OSTabPage.Controls.Add(this.osnumber);
+            this.OSTabPage.Controls.Add(this.osname);
+            this.OSTabPage.Controls.Add(this.PCname);
+            this.OSTabPage.HorizontalScrollbarBarColor = true;
+            this.OSTabPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.OSTabPage.HorizontalScrollbarSize = 10;
+            this.OSTabPage.Location = new System.Drawing.Point(4, 37);
+            this.OSTabPage.Name = "OSTabPage";
+            this.OSTabPage.Size = new System.Drawing.Size(722, 309);
+            this.OSTabPage.TabIndex = 10;
+            this.OSTabPage.Text = "OS";
+            this.OSTabPage.VerticalScrollbarBarColor = true;
+            this.OSTabPage.VerticalScrollbarHighlightOnWheel = false;
+            this.OSTabPage.VerticalScrollbarSize = 10;
             // 
             // Form1
             // 
@@ -1079,9 +1060,8 @@
             this.Name = "Form1";
             this.Opacity = 0.95D;
             this.Resizable = false;
-            this.Style = MetroFramework.MetroColorStyle.Purple;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.AeroShadow;
             this.TransparencyKey = System.Drawing.Color.LawnGreen;
-            ((System.ComponentModel.ISupportInitialize)(this.pcProcessor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcMemoryAvailable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Memory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hddinfo1)).EndInit();
@@ -1120,9 +1100,8 @@
         private MetroFramework.Controls.MetroLabel osname;
         private MetroFramework.Controls.MetroLabel version;
         private MetroFramework.Controls.MetroLabel osnumber;
-        private MetroFramework.Controls.MetroLabel ramspeedl;
         private MetroFramework.Controls.MetroLabel allram;
-        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroLabel totalramlabel;
         private MetroFramework.Controls.MetroLabel lblMemoryAvailable;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel tempgpu;
@@ -1138,7 +1117,6 @@
         private MetroFramework.Controls.MetroLabel cpuusage;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroLabel ramproc;
-        private System.Diagnostics.PerformanceCounter pcProcessor;
         private System.Diagnostics.PerformanceCounter pcMemoryAvailable;
         public System.ComponentModel.BackgroundWorker backgroundWorker1;
         private CircularProgressBar.CircularProgressBar circularProgressBar2;
@@ -1154,7 +1132,6 @@
         private MetroFramework.Controls.MetroTabPage RAMTabPage;
         private MetroFramework.Controls.MetroTabPage GPUTabPage;
         private MetroFramework.Controls.MetroTabPage CPUTabPage;
-        private MetroFramework.Controls.MetroLabel cpuload;
         private MetroFramework.Controls.MetroLabel cpusocket;
         private MetroFramework.Controls.MetroLabel Socket;
         private MetroFramework.Controls.MetroLabel L1Cache;
@@ -1175,6 +1152,7 @@
         private MetroFramework.Controls.MetroTextBox usb;
         private MetroFramework.Controls.MetroTextBox Ports;
         private MetroFramework.Controls.MetroTextBox Network;
+        private MetroFramework.Controls.MetroLabel totalram;
     }
 }
 

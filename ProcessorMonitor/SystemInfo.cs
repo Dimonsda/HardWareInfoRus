@@ -11,25 +11,27 @@ namespace SysInfo
     class SystemInfo
     {
         public string CPUUsage { get; set; }
-        public string GPUname {get;set;}
+        public string GPUname { get; set; }
         public string GPUSize { get; set; }
         public string Ports { get; set; }
         public string Motherboard { get; set; }
         public string MotherboardSerial { get; set; }
+
         public List<string> portss = new List<string>();
         public List<string> networks = new List<string>();
+        public List<string> raminfor = new List<string>();
 
         //Ниже железо
         public void videocard()
         {
-            
+
             ManagementObjectSearcher searcher =
                     new ManagementObjectSearcher("root\\CIMV2",
                     "SELECT * FROM Win32_DisplayConfiguration");
 
             foreach (ManagementObject queryObj in searcher.Get())
             {
-               GPUname = string.Join(" + ", queryObj["Description"]);
+                GPUname = string.Join(" + ", queryObj["Description"]);
             }
         }
 
@@ -54,7 +56,7 @@ namespace SysInfo
 
             foreach (ManagementObject queryObj in searcher.Get())
             {
-                portss.Add(string.Format("Порт: {0} {1}" , queryObj["InternalReferenceDesignator"],Environment.NewLine));
+                portss.Add(string.Format("Порт: {0} {1}", queryObj["InternalReferenceDesignator"], Environment.NewLine));
             }
 
         }
@@ -96,26 +98,47 @@ namespace SysInfo
         public string Version { get; set; }
         public string Time { get; set; }
         public string Ramspeed { get; set; }
-        public void ramspeed()
+        public string RamValue { get; set; }
+        public string RamModule { get; set; }
+
+
+
+        public void raminfo()
         {
+
             ManagementObjectSearcher searcher =
-                new ManagementObjectSearcher("root\\CIMV2",
-                "SELECT * FROM Win32_PhysicalMemory");
+                    new ManagementObjectSearcher("root\\CIMV2",
+                    "SELECT * FROM Win32_PhysicalMemory");
 
             foreach (ManagementObject queryObj in searcher.Get())
             {
-                Ramspeed = string.Format("Частота памяти: {0}", queryObj["Speed"]) + " MHz";
-            }
 
+                raminfor.Add(string.Format("Модуль: {0}", queryObj["DeviceLocator"]) + Environment.NewLine);
+                raminfor.Add(string.Format("Объём: {0}", Convert.ToDouble(queryObj["Capacity"]) / 1024 / 1024) + " MB" + Environment.NewLine);
+                raminfor.Add(string.Format("Частота памяти: {0}", queryObj["Speed"]) + " MHz" + Environment.NewLine + Environment.NewLine);
+            }
+        }
+
+
+        public void totalRam()
+        {
+
+            ManagementObjectSearcher searcher =
+                    new ManagementObjectSearcher("root\\CIMV2",
+                    "SELECT * FROM Win32_PhysicalMemoryArray");
+
+            foreach (ManagementObject queryObj in searcher.Get())
+            {
+                TotalRam = (string.Format("Максимальный объём: {0}", Convert.ToDouble(queryObj["MaxCapacity"]) / 1024) + "MB" + Environment.NewLine + Environment.NewLine);
+            }
         }
         public void time()
         {
             Time = System.DateTime.Now.ToString();
         }
-
         public void wininfo()
         {
-            int temper = (int)(new Microsoft.VisualBasic.Devices.ComputerInfo().TotalPhysicalMemory /1024 / 1024);
+            int temper = (int)(new Microsoft.VisualBasic.Devices.ComputerInfo().TotalPhysicalMemory / 1024 / 1024);
             TotalRam = temper.ToString();
 
             //Название ОС
@@ -123,11 +146,14 @@ namespace SysInfo
             PCname = new Microsoft.VisualBasic.Devices.Computer().Name;
 
             //Разрешение
-            MonitorSize  = "Разрешение: " + SystemInformation.PrimaryMonitorSize.Width.ToString() + " x " + SystemInformation.PrimaryMonitorSize.Height.ToString();
+            MonitorSize = "Разрешение: " + SystemInformation.PrimaryMonitorSize.Width.ToString() + " x " + SystemInformation.PrimaryMonitorSize.Height.ToString();
 
             CoreCount = "Число ядер: " + Convert.ToString(Environment.ProcessorCount);
             CoreNumber = "Ядро: " + Convert.ToString(Environment.OSVersion);
             Version = "Версия: " + Convert.ToString(Environment.Version);
         }
+
+
+
     }
 }
